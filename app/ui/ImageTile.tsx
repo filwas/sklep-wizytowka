@@ -1,15 +1,20 @@
-import { ListBlobResultBlob } from "@vercel/blob";
+import { ListBlobResultBlob, list } from "@vercel/blob";
 import styles from "./ImageTile.module.css";
 
 interface ImageTileProps {
-  blob: ListBlobResultBlob;
+  folder: string;
 }
 
-const ImageTile = (props: ImageTileProps) => {
+const ImageTile = async (props: ImageTileProps) => {
+  const {folders, blobs} = await list({mode: "folded", prefix: props.folder });
+
+  const fotoBlobs = blobs.filter((blob) => blob.url.endsWith(".jpg"))
+  
+  
   return (
     <div className={styles.imageTileWrapper}>
-      <p>text</p>
-      <img src={props.blob.url} />
+      <p>{props.folder.split("/")[2]}</p>
+      <img src={fotoBlobs[0].url} />
     </div>
   );
 };

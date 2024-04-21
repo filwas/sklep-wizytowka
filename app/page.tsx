@@ -1,24 +1,18 @@
 import { head, list } from "@vercel/blob";
-import Header from "./ui/Header";
 import ImageTile from "./ui/ImageTile";
+import SegmentWrapper from "./ui/SegmentWrapper";
 
 export default async function Home() {
-  const { folders, blobs } = await list({
+  const { folders } = await list({
     mode: "folded",
-    prefix: "FotoTiles/Sauna01/",
+    prefix: "FotoTiles/",
   });
 
-  console.log(folders);
 
   return (
     <>
-      {blobs.map(async (singleBlob, i) => {
-        if (
-          (await head(singleBlob.url)).contentType.startsWith("image")
-        ) {
-          console.log((await head(singleBlob.url)).contentType);
-          return <ImageTile blob={singleBlob} key={i} />;
-        }
+      {folders.map((folder, i) => {
+        return <SegmentWrapper folder={folder} key={i}/>
       })}
     </>
   );
