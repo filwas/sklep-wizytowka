@@ -1,0 +1,31 @@
+.headerWrapper {
+  position: fixed;
+  top: 0;
+  height: 80px;
+  width: calc(100% - 40px);
+  background-color: white;
+  z-index: 1000;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+}
+
+.headerWrapper p {
+  font-size: 16px;
+  align-content: inherit;
+  margin: 0 20px;
+}
+
+.rightSideWrap {
+  align-content: inherit;
+}
+.rightSideWrap a {
+  margin: 0 5px;
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.5s;
+}
+
+.rightSideWrap a:hover {
+  color: red;
+}
