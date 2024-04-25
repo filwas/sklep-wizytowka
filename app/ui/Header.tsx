@@ -1,16 +1,39 @@
+"use client";
+
+import { MouseEventHandler } from "react";
 import styles from "./Header.module.css";
 
-interface HeaderProps {}
+interface HeaderProps {
+  folderLinks: string[];
+}
 
 const Header = (props: HeaderProps) => {
+  function scrollToSegment(event: React.MouseEvent<HTMLAnchorElement>) {
+    event.preventDefault();
+    const targetId = event.currentTarget.getAttribute("href")?.substring(1); // Extract the target segment ID
+    const targetElement = document.getElementById(targetId || ""); // Get the target segment element
+
+    if (targetElement) {
+      window.scrollTo({
+        top: targetElement.offsetTop - 80,
+        behavior: "smooth",
+      });
+    }
+  }
+
   return (
     <div className={styles.headerWrapper}>
       <p>Sauny</p>
       <div className={styles.rightSideWrap}>
-        <a href="">linek1</a>
-        <a href="">linek2</a>
-        <a href="">linek3</a>
-        <a href="">linek4</a>
+        <a>O nas</a>
+        {props.folderLinks.map((link) => {
+          return (
+            <a href={`#${link}`} onClick={scrollToSegment}>
+              {link.split("/")[1]}
+            </a>
+          );
+        })}
+        <a>Kontakt</a>
       </div>
     </div>
   );
