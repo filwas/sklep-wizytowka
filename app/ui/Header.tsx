@@ -23,17 +23,17 @@ const Header = (props: HeaderProps) => {
 
   return (
     <div className={styles.headerWrapper}>
-      <p>Sauny</p>
+      <p>SAUNY</p>
       <div className={styles.rightSideWrap}>
-        <a>O nas</a>
+        <a href="#O nas" onClick={scrollToSegment}>O NAS</a>
         {props.folderLinks.map((link) => {
           return (
             <a href={`#${link}`} onClick={scrollToSegment}>
-              {link.split("/")[1]}
+              {link.split("/")[1].toUpperCase()}
             </a>
           );
         })}
-        <a>Kontakt</a>
+        <a>KONTAKT</a>
       </div>
     </div>
   );

@@ -14,8 +14,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${raleway.className} antialiased`}>
-        <div className={styles.websiteWrapper}>{children}</div>
+      <body className={`${raleway.className} antialised ${styles.bodyStyle}`}>
+        <div className={styles.websiteWrapper}>
+          {children}
+        </div>
       </body>
     </html>
   );

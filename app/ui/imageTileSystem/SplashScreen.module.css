@@ -15,6 +15,10 @@
   max-width: 30%;
 }
 
+.textWrapper p{
+  font-size: 16px;
+}
+
 .buttonWrapper {
   height: 100%;
 }

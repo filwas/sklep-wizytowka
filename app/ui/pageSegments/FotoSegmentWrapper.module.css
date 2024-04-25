@@ -6,9 +6,12 @@
   align-content: center;
 }
 
+.segmentName {
+  font-size: 32px;
+}
+
 .imageTilesWrapper {
   width: 100%;
-  min-height: 500px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -17,5 +20,11 @@
 }
 
 .singleItemWrapper {
-  margin: 10px;
+  margin: 20px;
+}
+
+.bottomLine {
+  height: 100px;
+  width: 0px;
+  border-left: 1px solid lightgray;
 }

@@ -9,7 +9,7 @@ interface FotoSegmentWrapperProps {
 const FotoSegmentWrapper = async (props: FotoSegmentWrapperProps) => {
   const { blobs } = await list({
     prefix: props.folder,
-  });  
+  });
 
   const segmentName = props.folder.split("/")[1];
   const imageArray: { [key: string]: ListBlobResultBlob[] } = {};
@@ -27,7 +27,7 @@ const FotoSegmentWrapper = async (props: FotoSegmentWrapperProps) => {
 
   return (
     <div className={styles.segmentTopWrapper} id={props.folder}>
-      <h1>{segmentName}</h1>
+      <div className={styles.segmentName}>{segmentName}</div>
       <div className={styles.imageTilesWrapper}>
         {Object.entries(imageArray).map(([itemName, blobsArray], i) => {
           return (
@@ -37,6 +37,7 @@ const FotoSegmentWrapper = async (props: FotoSegmentWrapperProps) => {
           );
         })}
       </div>
+      <div className={styles.bottomLine} />
     </div>
   );
 };
