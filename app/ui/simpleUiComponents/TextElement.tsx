@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import styles from "./TextElement.module.css";
 
 interface TextElementProps {
   textSourceUrl: string;
@@ -24,7 +25,35 @@ const TextElement = (props: TextElementProps) => {
 
     fetchData();
   }, []);
-  return <p>{fileContents}</p>;
+
+  const parseLinksToClickable = (text: string) => {
+    const emailRegex = /([\w.-]+)@([\w.-]+\.[a-zA-Z]{2,4})/g;
+    const urlRegex =
+      /(?:^|\s)((?:https?:\/\/)?(?:www\.)?[\w.-]+\.[a-zA-Z]{2,}(?:\/\S*)?)(?:\s|$)/gi;
+
+    const textWithEmailLinks = text.replace(
+      emailRegex,
+      '<a href="mailto:$&">$&</a>'
+    );
+
+    const textWithClickableLinks = textWithEmailLinks.replace(
+      urlRegex,
+      '<a href="$&" target="_blank">$&</a>'
+    );
+
+    return textWithClickableLinks;
+  };
+
+  return (
+    <div className={styles.textContainer}>
+      <pre
+        className={styles.textElement}
+        dangerouslySetInnerHTML={{
+          __html: parseLinksToClickable(fileContents),
+        }}
+      />
+    </div>
+  );
 };
 
 export default TextElement;

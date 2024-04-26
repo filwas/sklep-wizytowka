@@ -1,0 +1,10 @@
+.textContainer {
+  display: inherit;
+  max-width: 500px;
+}
+
+.textElement {
+  font-family: inherit;
+  text-wrap: wrap;
+  margin: 10px;
+}

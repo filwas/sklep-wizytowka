@@ -25,7 +25,9 @@ const Header = (props: HeaderProps) => {
     <div className={styles.headerWrapper}>
       <p>SAUNY</p>
       <div className={styles.rightSideWrap}>
-        <a href="#O nas" onClick={scrollToSegment}>O NAS</a>
+        <a href="#O nas" onClick={scrollToSegment}>
+          O NAS
+        </a>
         {props.folderLinks.map((link) => {
           return (
             <a href={`#${link}`} onClick={scrollToSegment}>
@@ -33,7 +35,9 @@ const Header = (props: HeaderProps) => {
             </a>
           );
         })}
-        <a>KONTAKT</a>
+        <a href="#Kontakt" onClick={scrollToSegment}>
+          KONTAKT
+        </a>
       </div>
     </div>
   );

@@ -15,19 +15,18 @@ interface SplashScreenProps {
 }
 
 const SplashScreen = (props: SplashScreenProps) => {
-
   return (
     <div className={styles.splasScreenWrapper}>
-      <Carousel fotoBlobs={props.fotoBlobs} />
-      <div className={styles.textWrapper}>
-        <h1>{props.itemName}</h1>
-        <TextElement textSourceUrl={props.textBlobs[0].url} />
+      <div className={styles.carouselPlusTextWrapper}>
+        <Carousel fotoBlobs={props.fotoBlobs} />
+        <div className={styles.textWrapper}>
+          <h1>{props.itemName}</h1>
+          <TextElement textSourceUrl={props.textBlobs[0].url} />
+        </div>
       </div>
-      <div className={styles.buttonWrapper}>
-        <button onClick={props.closeHandler}>
-          <CrossIcon />
-        </button>
-      </div>
+      <button onClick={props.closeHandler}>
+        <CrossIcon />
+      </button>
     </div>
   );
 };

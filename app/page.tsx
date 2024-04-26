@@ -5,6 +5,7 @@ import Carousel from "./ui/simpleUiComponents/Carousel";
 import SplashScreen from "./ui/imageTileSystem/SplashScreen";
 import Header from "./ui/Header";
 import DescriptionSegmentWrapper from "./ui/pageSegments/DescriptionSegmentWrapper";
+import FooterSegmentWrapper from "./ui/pageSegments/FooterSegmentWrapper";
 
 export default async function Home() {
   const { folders } = await list({
@@ -19,6 +20,7 @@ export default async function Home() {
       {folders.map((folder, i) => {
         return <FotoSegmentWrapper folder={folder} key={i} />;
       })}
+      <FooterSegmentWrapper folder="HomeScreen/" customName="Kontakt" />
     </>
   );
 }
