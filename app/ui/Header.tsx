@@ -30,9 +30,9 @@ const Header = (props: HeaderProps) => {
         <a href="#O nas" onClick={scrollToSegment}>
           O NAS
         </a>
-        {props.folderLinks.map((link) => {
+        {props.folderLinks.map((link, i) => {
           return (
-            <a href={`#${link}`} onClick={scrollToSegment}>
+            <a href={`#${link}`} onClick={scrollToSegment} key={i}>
               {link.split("/")[1].toUpperCase()}
             </a>
           );
