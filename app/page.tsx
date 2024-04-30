@@ -20,7 +20,7 @@ export default async function Home() {
       {folders.map((folder, i) => {
         return <FotoSegmentWrapper folder={folder} key={i} />;
       })}
-      <FooterSegmentWrapper folder="HomeScreen/" customName="Kontakt" />
+      <DescriptionSegmentWrapper folder="HomeScreen/" customName="Kontakt" />
     </>
   );
 }

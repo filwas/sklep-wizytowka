@@ -25,12 +25,14 @@ const ImageTile = (props: ImageTileProps) => {
         <img src={fotoBlobs[0].url} alt={props.itemName} />
       </div>
       {isSplashOpen && (
-        <SplashScreen
-          itemName={props.itemName}
-          fotoBlobs={fotoBlobs}
-          textBlobs={textBlobs}
-          closeHandler={handleTileClick}
-        />
+        <div className={styles.splashWrap}>
+          <SplashScreen
+            itemName={props.itemName}
+            fotoBlobs={fotoBlobs}
+            textBlobs={textBlobs}
+            closeHandler={handleTileClick}
+          />
+        </div>
       )}
     </>
   );
