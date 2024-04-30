@@ -22,6 +22,7 @@ const DescriptionSegmentWrapper = async (
       className={styles.segmentTopWrapper}
       id={props.customName ? props.customName : props.folder}
     >
+            <div className={styles.topLine} />
       <div className={styles.segmentName}>{props.customName}</div>
       <TextElement textSourceUrl={textBlobs[0].url} />
       <div className={styles.bottomLine} />

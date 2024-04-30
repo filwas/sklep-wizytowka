@@ -26,7 +26,7 @@ const FotoSegmentWrapper = async (props: FotoSegmentWrapperProps) => {
   });
 
   return (
-    <div className={styles.segmentTopWrapper} id={props.folder}>
+    <div id={props.folder} className={styles.segmentTopWrapper}>
       <div className={styles.segmentName}>{segmentName}</div>
       <div className={styles.imageTilesWrapper}>
         {Object.entries(imageArray).map(([itemName, blobsArray], i) => {

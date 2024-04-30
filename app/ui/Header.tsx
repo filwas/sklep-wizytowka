@@ -23,7 +23,9 @@ const Header = (props: HeaderProps) => {
 
   return (
     <div className={styles.headerWrapper}>
-      <p>SAUNY</p>
+      <a href="#" onClick={scrollToSegment}>
+        SAUNY
+      </a>
       <div className={styles.rightSideWrap}>
         <a href="#O nas" onClick={scrollToSegment}>
           O NAS

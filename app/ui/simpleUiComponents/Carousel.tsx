@@ -3,7 +3,7 @@
 import { ListBlobResultBlob } from "@vercel/blob";
 import styles from "./Carousel.module.css";
 import { useState } from "react";
-import ArrowIcon from "./ArrowIcon";
+import ArrowIcon from "../icons/ArrowIcon";
 
 interface CarouselProps {
   fotoBlobs: ListBlobResultBlob[];
