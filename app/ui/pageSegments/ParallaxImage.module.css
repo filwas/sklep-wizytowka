@@ -1,0 +1,26 @@
+.parallaxWrapper {
+  margin-top: 100px;
+  width: 100%;
+  display: flex;
+  color: white;
+  justify-content: center;
+}
+
+.parallaxWrapper h1 {
+  margin: 0px;
+  z-index: 1000;
+  position: absolute;
+  font-size: 100px;
+  top: 50%;
+  transform: translate(0, -70%);
+  letter-spacing: 10px;
+}
+
+.parallaxWrapper h3 {
+  margin: 0px;
+  z-index: 1000;
+  position: absolute;
+  font-size: 32px;
+  top: 50%;
+  transform: translate(0, 70%);
+}

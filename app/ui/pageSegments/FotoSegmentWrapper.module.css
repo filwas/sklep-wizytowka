@@ -1,0 +1,31 @@
+.segmentTopWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+
+.segmentName {
+  font-size: 32px;
+  margin-bottom: 80px;
+}
+
+.imageTilesWrapper {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  align-content: center;
+}
+
+.singleItemWrapper {
+  margin: 20px;
+}
+
+.bottomLine {
+  height: 100px;
+  width: 0px;
+  border-left: 1px solid lightgray;
+}

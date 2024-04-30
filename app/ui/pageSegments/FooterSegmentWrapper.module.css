@@ -1,0 +1,17 @@
+.segmentTopWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+  }
+  
+  .segmentTopWrapper p {
+    max-width: 600px;
+  }
+  
+  .segmentName {
+    font-size: 32px;
+  }
+  
+  
