@@ -71,19 +71,3 @@ export async function listAllAssets(prefix?: string) {
     throw error;
   }
 }
-
-export async function listALLALLAssets() {
-  try {
-    const response = await fetch(
-      `${API_BASE_URL}/resources/raw`,
-      REQUEST_OPTIONS
-    );
-
-    const data = await response.json();
-
-    return data as CloudinaryResponse;
-  } catch (error) {
-    console.error("Error listing assets by folder:", error);
-    throw error;
-  }
-}

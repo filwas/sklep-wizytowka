@@ -14,8 +14,7 @@ interface SplashScreenProps {
   closeHandler: () => void;
 }
 
-const SplashScreen = (props: SplashScreenProps) => {     
-
+const SplashScreen = (props: SplashScreenProps) => {
   return (
     <div className={styles.splasScreenWrapper}>
       <div className={styles.carouselPlusTextWrapper}>

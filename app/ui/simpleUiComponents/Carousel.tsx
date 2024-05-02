@@ -4,8 +4,8 @@ import styles from "./Carousel.module.css";
 import { useState } from "react";
 import ArrowIcon from "../icons/ArrowIcon";
 import { CloudinaryResource } from "@/app/types/types";
-import { Cloudinary } from "@cloudinary/url-gen/index";
 import { AdvancedImage } from "@cloudinary/react";
+import { useCloudinary } from "@/app/providers";
 
 interface CarouselProps {
   fotos: CloudinaryResource[];
@@ -13,16 +13,9 @@ interface CarouselProps {
 
 const Carousel = (props: CarouselProps) => {
   const [carouselPosition, setCarouselPosition] = useState(0);
-  const cld = new Cloudinary({
-    cloud: {
-      cloudName: process.env.CLOUD_NAME,
-    },
-  });
+  const cld = useCloudinary()
 
-  console.log(props.fotos);
-  
-
-  const displayedImage = cld.image(props.fotos[carouselPosition].url);
+  const displayedImage = cld.image(props.fotos[carouselPosition].public_id);
 
   const handleCarouselPosition = (side: string) => {
     const fotoArrayLength = props.fotos.length - 1;
@@ -37,9 +30,16 @@ const Carousel = (props: CarouselProps) => {
 
   return (
     <div className={styles.carouselWrapper}>
-      <ArrowIcon side="left" onClick={handleCarouselPosition} />
-      <AdvancedImage cldImg={displayedImage} />
-      <ArrowIcon side="right" onClick={handleCarouselPosition} />
+      <ArrowIcon side="left" onClick={() => {handleCarouselPosition("left")}} />
+      <AdvancedImage
+        cldImg={displayedImage}
+        style={{
+          position: "relative",
+          width: "100%",
+          height: "100%",
+        }}
+      />
+      <ArrowIcon side="right" onClick={() => {handleCarouselPosition("right")}} />
     </div>
   );
 };

@@ -7,6 +7,7 @@ import { CloudinaryResource, Folder } from "@/app/types/types";
 import { listAllAssets, listAllImages } from "@/app/api/api";
 import { AdvancedImage } from "@cloudinary/react";
 import { Cloudinary } from "@cloudinary/url-gen/index";
+import { useCloudinary } from "@/app/providers";
 
 interface ImageTileProps {
   productFolder: Folder;
@@ -19,12 +20,7 @@ const ImageTile = (props: ImageTileProps) => {
   const fotos = props.fotos;
   const description = props.description;
 
-  const cld = new Cloudinary({
-    cloud: {
-      cloudName: process.env.CLOUD_NAME,
-    },
-  });
-
+  const cld = useCloudinary();
   const thumbImg = cld.image(fotos[0].public_id);
 
   const handleTileClick = () => {
@@ -52,22 +48,3 @@ const ImageTile = (props: ImageTileProps) => {
 };
 
 export default ImageTile;
-
-/**
- *     <>
-      <div className={styles.imageTileWrapper} onClick={handleTileClick}>
-        <div className={styles.itemName}>{props.itemName}</div>
-        <img src={fotoBlobs[0].url} alt={props.itemName} />
-      </div>
-      {isSplashOpen && (
-        <div className={styles.splashWrap}>
-          <SplashScreen
-            itemName={props.itemName}
-            fotoBlobs={fotoBlobs}
-            textBlobs={textBlobs}
-            closeHandler={handleTileClick}
-          />
-        </div>
-      )}
-    </>
- */
