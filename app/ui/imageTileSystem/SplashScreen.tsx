@@ -6,6 +6,8 @@ import Carousel from "../simpleUiComponents/Carousel";
 import { useEffect, useState } from "react";
 import CrossIcon from "./CrossIcon";
 import TextElement from "../simpleUiComponents/TextElement";
+import useIsSmallScreen from "@/utils/useIsSmallScreen";
+import classNames from "classnames";
 
 interface SplashScreenProps {
   itemName: string;
@@ -15,9 +17,13 @@ interface SplashScreenProps {
 }
 
 const SplashScreen = (props: SplashScreenProps) => {
+  const isSmallScreen = useIsSmallScreen(768);
+
+  console.log(isSmallScreen);
+
   return (
-    <div className={styles.splasScreenWrapper}>
-      <div className={styles.carouselPlusTextWrapper}>
+    <div className={styles.splashScreenWrapper}>
+      <div className={styles.carouselPlusTextWrapper} style={{flexDirection: isSmallScreen ? "column" : "row"}}>
         <Carousel fotoBlobs={props.fotoBlobs} />
         <div className={styles.textWrapper}>
           <h1>{props.itemName}</h1>
