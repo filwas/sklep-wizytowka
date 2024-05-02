@@ -1,12 +1,11 @@
 "use client";
 
-import { MouseEventHandler } from "react";
 import styles from "./Header.module.css";
+import { Folder } from "../types/types";
 
 interface HeaderProps {
-  folderLinks: string[];
+  folders: Folder[];
 }
-
 const Header = (props: HeaderProps) => {
   function scrollToSegment(event: React.MouseEvent<HTMLAnchorElement>) {
     event.preventDefault();
@@ -19,7 +18,7 @@ const Header = (props: HeaderProps) => {
         behavior: "smooth",
       });
     }
-  }
+  }  
 
   return (
     <div className={styles.headerWrapper}>
@@ -30,10 +29,10 @@ const Header = (props: HeaderProps) => {
         <a href="#O nas" onClick={scrollToSegment}>
           O NAS
         </a>
-        {props.folderLinks.map((link, i) => {
+        {props.folders.map((folder, i) => {
           return (
-            <a href={`#${link}`} onClick={scrollToSegment} key={i}>
-              {link.split("/")[1].toUpperCase()}
+            <a href={`#${folder.name}`} onClick={scrollToSegment} key={i}>
+              {folder.name.toUpperCase()}
             </a>
           );
         })}
