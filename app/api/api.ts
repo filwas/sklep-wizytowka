@@ -38,7 +38,7 @@ export async function listSubfolders(folder: string) {
 
 export async function listAllImages(prefix?: string) {
   const prefixOption = prefix ? "/upload?prefix=" + prefix : "";
-  
+
   try {
     const response = await fetch(
       `${API_BASE_URL}/resources/image${prefixOption}`,
@@ -55,19 +55,35 @@ export async function listAllImages(prefix?: string) {
 }
 
 export async function listAllAssets(prefix?: string) {
-    const prefixOption = prefix ? "/upload?prefix=" + prefix : "";
-    
-    try {
-      const response = await fetch(
-        `${API_BASE_URL}/resources/raw${prefixOption}`,
-        REQUEST_OPTIONS
-      );
-  
-      const data = await response.json();
-  
-      return data as CloudinaryResponse;
-    } catch (error) {
-      console.error("Error listing assets by folder:", error);
-      throw error;
-    }
+  const prefixOption = prefix ? "&prefix=" + prefix : "";
+
+  try {
+    const response = await fetch(
+      `${API_BASE_URL}/resources/raw?type=upload${prefixOption}`,
+      REQUEST_OPTIONS
+    );
+
+    const data = await response.json();
+
+    return data as CloudinaryResponse;
+  } catch (error) {
+    console.error("Error listing assets by folder:", error);
+    throw error;
   }
+}
+
+export async function listALLALLAssets() {
+  try {
+    const response = await fetch(
+      `${API_BASE_URL}/resources/raw`,
+      REQUEST_OPTIONS
+    );
+
+    const data = await response.json();
+
+    return data as CloudinaryResponse;
+  } catch (error) {
+    console.error("Error listing assets by folder:", error);
+    throw error;
+  }
+}

@@ -3,35 +3,29 @@ import { ListBlobResultBlob } from "@vercel/blob";
 import styles from "./ImageTile.module.css";
 import { useState } from "react";
 import SplashScreen from "./SplashScreen";
-import { Folder } from "@/app/types/types";
+import { CloudinaryResource, Folder } from "@/app/types/types";
 import { listAllAssets, listAllImages } from "@/app/api/api";
 import { AdvancedImage } from "@cloudinary/react";
 import { Cloudinary } from "@cloudinary/url-gen/index";
 
 interface ImageTileProps {
   productFolder: Folder;
+  fotos: CloudinaryResource[];
+  description: CloudinaryResource;
 }
 
-const ImageTile = async (props: ImageTileProps) => {
+const ImageTile = (props: ImageTileProps) => {
   const [isSplashOpen, setIsSplashOpen] = useState(false);
-
-  const fotos = (await listAllImages(props.productFolder.path)).resources;
-  const description = (await listAllAssets(props.productFolder.path))
-    .resources[0];
-
-  console.log(description);
+  const fotos = props.fotos;
+  const description = props.description;
 
   const cld = new Cloudinary({
     cloud: {
       cloudName: process.env.CLOUD_NAME,
     },
-  })
+  });
 
-  const newImg = cld.image(fotos[0].public_id);
-
-  fotos.forEach((foto) =>
-    console.log(props.productFolder.name, foto.resource_type)
-  );
+  const thumbImg = cld.image(fotos[0].public_id);
 
   const handleTileClick = () => {
     setIsSplashOpen((prev) => !prev);
@@ -41,18 +35,18 @@ const ImageTile = async (props: ImageTileProps) => {
     <>
       <div className={styles.imageTileWrapper} onClick={handleTileClick}>
         <div className={styles.itemName}>{props.productFolder.name}</div>
-        <AdvancedImage cldImg={newImg} />
-        {isSplashOpen && (
-          <div className={styles.splashWrap}>
-            <SplashScreen
-              itemName={props.productFolder.name}
-              fotos={fotos}
-              description={description}
-              closeHandler={handleTileClick}
-            />
-          </div>
-        )}
+        <AdvancedImage cldImg={thumbImg} />
       </div>
+      {isSplashOpen && (
+        <div className={styles.splashWrap}>
+          <SplashScreen
+            itemName={props.productFolder.name}
+            fotos={fotos}
+            description={description}
+            closeHandler={handleTileClick}
+          />
+        </div>
+      )}
     </>
   );
 };

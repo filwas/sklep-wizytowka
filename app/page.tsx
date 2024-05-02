@@ -5,7 +5,7 @@ import DescriptionSegmentWrapper from "./ui/pageSegments/DescriptionSegmentWrapp
 
 import ParallaxImage from "./ui/pageSegments/ParallaxImage";
 import Footer from "./ui/Footer";
-import { listSubfolders } from "./api/api";
+import { listALLALLAssets, listSubfolders } from "./api/api";
 import { Cloudinary } from "@cloudinary/url-gen/index";
 
 export default async function Home() {

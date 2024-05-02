@@ -15,9 +15,12 @@ const Carousel = (props: CarouselProps) => {
   const [carouselPosition, setCarouselPosition] = useState(0);
   const cld = new Cloudinary({
     cloud: {
-      cloudName: process.env.COUD_NAME,
+      cloudName: process.env.CLOUD_NAME,
     },
   });
+
+  console.log(props.fotos);
+  
 
   const displayedImage = cld.image(props.fotos[carouselPosition].url);
 
