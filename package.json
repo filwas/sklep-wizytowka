@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@cloudinary/react": "^1.13.0",
+    "@cloudinary/url-gen": "^1.19.0",
+    "@sanity/client": "^6.15.20",
     "@vercel/blob": "^0.22.3",
     "next": "^14.2.1-canary.6",
     "react": "^18",

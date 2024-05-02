@@ -1,4 +1,5 @@
 "use client";
+import { Cloudinary } from "@cloudinary/url-gen/index";
 import styles from "./ParallaxImage.module.css";
 
 import { ParallaxBanner, ParallaxBannerLayer } from "react-scroll-parallax";
@@ -8,6 +9,8 @@ interface ParallaxImageProps {
 }
 
 export default function ParallaxImage(props: ParallaxImageProps) {
+  
+  
   return (
     <div className={styles.parallaxWrapper}>
       <h1>SAUNY</h1>
