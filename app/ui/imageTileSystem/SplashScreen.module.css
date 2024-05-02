@@ -17,6 +17,14 @@
   align-items: center;
 }
 
+.smallFlex{
+  flex-direction: column;
+}
+
+.bigFlex{
+  flex-direction: row;
+}
+
 .textWrapper {
 max-height: 80%;
 overflow-x: autoF;

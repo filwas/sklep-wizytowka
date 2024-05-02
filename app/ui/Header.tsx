@@ -2,6 +2,8 @@
 
 import styles from "./Header.module.css";
 import { Folder } from "../types/types";
+import classNames from "classnames";
+import useIsSmallScreen from "@/utils/useIsSmallScreen";
 
 interface HeaderProps {
   folders: Folder[];
@@ -9,19 +11,25 @@ interface HeaderProps {
 const Header = (props: HeaderProps) => {
   function scrollToSegment(event: React.MouseEvent<HTMLAnchorElement>) {
     event.preventDefault();
-    const targetId = event.currentTarget.getAttribute("href")?.substring(1); // Extract the target segment ID
-    const targetElement = document.getElementById(targetId || ""); // Get the target segment element
-
+    const targetId = event.currentTarget.getAttribute("href")?.substring(1);
+    const targetElement = document.getElementById(targetId || "");
     if (targetElement) {
       window.scrollTo({
         top: targetElement.offsetTop - 80,
         behavior: "smooth",
       });
     }
-  }  
+  }
+
+  const isSmallScreen = useIsSmallScreen(768);
+
+  const headerWrapper = classNames(
+    styles.headerWrapper,
+    isSmallScreen ? styles.smallHeaderWrapper : ""
+  );
 
   return (
-    <div className={styles.headerWrapper}>
+    <div className={headerWrapper}>
       <a href="#" onClick={scrollToSegment}>
         SAUNY
       </a>

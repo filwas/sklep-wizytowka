@@ -1,5 +1,4 @@
 "use client";
-import { Cloudinary } from "@cloudinary/url-gen/index";
 import styles from "./ParallaxImage.module.css";
 
 import { ParallaxBanner, ParallaxBannerLayer } from "react-scroll-parallax";
@@ -12,7 +11,7 @@ export default function ParallaxImage(props: ParallaxImageProps) {
   
   
   return (
-    <div className={styles.parallaxWrapper}>
+    <div className={styles.parallaxWrapper} id="">
       <h1>SAUNY</h1>
       <h3>dwadzieścia cztery pe el</h3>
       <ParallaxBanner style={{ aspectRatio: "1 / 1" }}>
