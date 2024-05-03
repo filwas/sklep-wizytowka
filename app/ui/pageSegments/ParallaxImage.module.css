@@ -1,26 +1,27 @@
 .parallaxWrapper {
-  margin-top: 80px;
+  margin-top: 32px;
   width: 100%;
   display: flex;
   color: white;
   justify-content: center;
 }
 
-.parallaxWrapper h1 {
-  margin: 0px;
-  z-index: 1000;
+.parallaxText {
+  display: inline;
   position: absolute;
-  font-size: 100px;
-  top: 60%;
-  transform: translate(0, -70%);
-  letter-spacing: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  letter-spacing: 5px;
+  user-select: none;
 }
 
-.parallaxWrapper h3 {
-  margin: 0px;
-  z-index: 1000;
-  position: absolute;
-  font-size: 32px;
-  top: 60%;
-  transform: translate(0, 70%);
+.parallaxText h1 {
+  
+  font-weight: 500;
+}
+
+.parallaxText h2 {
+  font-weight: 200;
 }

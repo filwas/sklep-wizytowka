@@ -49,7 +49,7 @@ export async function listAllImages(prefix?: string) {
 
     return data as CloudinaryResponse;
   } catch (error) {
-    console.error("Error listing assets by folder:", error);
+    console.error("Error listing images by folder:", error);
     throw error;
   }
 }
