@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 
 const useIsSmallScreen = (screenWidth: number) => {
     const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+    
  
     useEffect(() => {
        const handleResize = () => {
