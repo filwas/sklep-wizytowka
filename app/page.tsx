@@ -21,12 +21,10 @@ export default async function Home() {
   //z jakiegos powodu tekst w splashu sie nie wczytuje
 
   //trzeba splash ogarnac w koncu
-  const url =
-    "https://poemnvz5cpkx5zh6.public.blob.vercel-storage.com/HomeScreen/sauna-ICD3yEptHWD1jeIUsvxj6sPOCBN0dw.jpg";
 
   return (
-    <div style={{ position: "absolute" }}>
-      <ParallaxImage url={parallaxPhoto[0].url} />
+    <div style={{ position: "absolute", width: "100%" }}>
+      <ParallaxImage foto={parallaxPhoto[0]} />
       <Header folders={fotoFolders} />
       <UpButton />
       <DescriptionSegmentWrapper folder="HomeScreen/" customName="O nas" />
