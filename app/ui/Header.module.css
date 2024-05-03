@@ -20,7 +20,7 @@
 .headerWrapper a {
   font-size: 16px;
   align-content: inherit;
-  margin: 0 20px;
+  margin-left: 20px;
   color: inherit;
   transition: color 0.5s;
   text-decoration: none;
@@ -32,6 +32,7 @@
 
 .rightSideWrap {
   align-content: inherit;
+  margin-right: 20px;
 }
 .rightSideWrap a {
   margin: 0 5px;

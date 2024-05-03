@@ -1,6 +1,7 @@
 .imageTileWrapper {
   position: relative;
   background-color: black;
+  z-index: 100;
 }
 
 .itemName {
@@ -29,20 +30,3 @@
   display: block;
 }
 
-.splashWrap-enter {
-  opacity: 0;
-}
-
-.splashWrap-enter-active {
-  opacity: 1;
-  transition: opacity 0.3s ease;
-}
-
-.splashWrap-exit {
-  opacity: 1;
-}
-
-.splashWrap-exit-active {
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}

@@ -11,6 +11,7 @@ import classNames from "classnames";
 
 interface SplashScreenProps {
   itemName: string;
+  isVisible: boolean;
   fotos: CloudinaryResource[];
   description: CloudinaryResource;
   closeHandler: () => void;
@@ -19,8 +20,13 @@ interface SplashScreenProps {
 const SplashScreen = (props: SplashScreenProps) => {
   const isSmallScreen = useIsSmallScreen(768);
 
+  const splashScreenWrapper = classNames(
+    styles.splashScreenWrapper,
+    props.isVisible ? styles.visible : ""
+  );
+
   return (
-    <div className={styles.splashScreenWrapper}>
+    <div className={splashScreenWrapper}>
       <div
         className={styles.carouselPlusTextWrapper}
         style={{ flexDirection: isSmallScreen ? "column" : "row" }}

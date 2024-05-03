@@ -5,8 +5,14 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1111;
   flex-direction: row;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.visible{
+  z-index: 1111;
+  opacity: 1;
 }
 
 .carouselPlusTextWrapper {
@@ -17,21 +23,16 @@
   align-items: center;
 }
 
-.smallFlex{
-  flex-direction: column;
-}
-
-.bigFlex{
-  flex-direction: row;
-}
-
 .textWrapper {
 max-height: 80%;
-overflow-x: autoF;
+overflow-x: auto;
 }
 
 .textWrapper p {
   font-size: 16px;
+}
+.textWrapper h1 {
+  font-weight: 300;
 }
 
 .splashScreenWrapper button {
