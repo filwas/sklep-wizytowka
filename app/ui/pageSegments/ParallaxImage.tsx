@@ -33,7 +33,7 @@ export default function ParallaxImage(props: ParallaxImageProps) {
           </div>
         </ParallaxBannerLayer>
         <ParallaxBannerLayer speed={-50} >
-          <AdvancedImage cldImg={image} style={{width:"100%"}} />
+          <AdvancedImage cldImg={image} style={{width:"100%"}}/>
         </ParallaxBannerLayer>
       </ParallaxBanner>
     </div>

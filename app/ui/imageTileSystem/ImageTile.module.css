@@ -1,15 +1,10 @@
 .imageTileWrapper {
   position: relative;
   background-color: black;
-  max-width: 510px;
-  max-height: 510px;
-  object-fit: cover;
 }
 
 .itemName {
   opacity: 100%;
-  max-width: 100%;
-  max-height: 100%;
   position: absolute;
   display: none;
   color: white;
@@ -19,11 +14,10 @@
 }
 
 .imageTileWrapper img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1/1;
-  object-fit: cover;
+  box-sizing: inherit;
   transition: opacity 0.2s;
+  max-width: 100%;
+  height: auto;
 }
 
 .imageTileWrapper:hover img {
