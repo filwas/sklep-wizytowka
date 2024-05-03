@@ -1,6 +1,4 @@
 import { raleway } from "./ui/fonts";
-import styles from "./layout.module.css";
-import Header from "./ui/Header";
 import { Providers } from "./providers";
 
 export const metadata = {
@@ -15,6 +13,27 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link
+          rel="icon"
+          href="/public/favicon-16x16.png"
+          type="image/png"
+          sizes="16x16"
+        />
+        <link
+          rel="icon"
+          href="/public/favicon-32x32.png"
+          type="image/png"
+          sizes="32x32"
+        />
+        <link
+          rel="apple-touch-icon"
+          href="/public/apple-touch-icon.png"
+          type="image/png"
+          sizes="any"
+        />
+      </head>
       <body className={`${raleway.className} antialised`}>
         <Providers>{children}</Providers>
       </body>
