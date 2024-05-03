@@ -4,10 +4,8 @@ import styles from "./ImageTile.module.css";
 import { useState } from "react";
 import SplashScreen from "./SplashScreen";
 import { CloudinaryResource, Folder } from "@/app/types/types";
-import { listAllAssets, listAllImages } from "@/app/api/api";
-import { AdvancedImage } from "@cloudinary/react";
-import { Cloudinary } from "@cloudinary/url-gen/index";
 import { useCloudinary } from "@/app/providers";
+import { AdvancedImage } from "@cloudinary/react";
 
 interface ImageTileProps {
   productFolder: Folder;

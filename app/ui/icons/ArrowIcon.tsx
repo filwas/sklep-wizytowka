@@ -1,12 +1,17 @@
 import styles from "./ArrowIcon.module.css";
 
 interface ArrowIconProps {
-  side: "left" | "right"
+  side: "left" | "right";
   onClick: (side: string) => void;
 }
 const ArrowIcon = (props: ArrowIconProps) => {
   return (
-    <div className={styles.arrowWrapper} onClick={()=> {props.onClick(props.side)}}>
+    <div
+      className={styles.arrowWrapper}
+      onClick={() => {
+        props.onClick(props.side);
+      }}
+    >
       <svg
         width="20"
         height="20"

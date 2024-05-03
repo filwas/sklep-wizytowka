@@ -12,6 +12,11 @@
   justify-content: space-evenly;
 }
 
+.smallFooterWrapper{
+  position: absolute;
+  bottom: 0;
+}
+
 .iconsWrapper {
   width: 50%;
   display: flex;

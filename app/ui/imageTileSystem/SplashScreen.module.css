@@ -1,13 +1,12 @@
-.splasScreenWrapper {
-  border-radius: 20px;
-  background-color: whitesmoke;
-  border: 1px solid gray;
+.splashScreenWrapper {
+  background-color: white;
   position: fixed;
-  top: 5%;
-  left: 5%;
-  width: 90%;
-  height: 90%;
-  z-index: 1001;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1111;
+  flex-direction: row;
 }
 
 .carouselPlusTextWrapper {
@@ -16,6 +15,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.smallFlex{
+  flex-direction: column;
+}
+
+.bigFlex{
+  flex-direction: row;
 }
 
 .textWrapper {
@@ -27,7 +34,7 @@ overflow-x: autoF;
   font-size: 16px;
 }
 
-.splasScreenWrapper button {
+.splashScreenWrapper button {
   border: unset;
   position: absolute;
   top: 0;
