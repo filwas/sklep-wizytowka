@@ -49,7 +49,7 @@ const SplashScreen = (props: SplashScreenProps) => {
         </div>
         <div className={textWrapper}>
           {!isSmallScreen && <h1>{props.itemName}</h1>}
-          <TextElement textSourceUrl={props.description.url} />
+          <TextElement textSourceUrl={props.description.secure_url} />
         </div>
       </div>
       <button onClick={props.closeHandler}>
