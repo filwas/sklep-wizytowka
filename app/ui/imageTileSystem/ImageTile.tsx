@@ -49,7 +49,7 @@ const ImageTile = (props: ImageTileProps) => {
     <>
       <div className={styles.imageTileWrapper} onClick={handleTileClick}>
         <div className={styles.itemName}>{props.productFolder.name}</div>
-        <AdvancedImage cldImg={thumbImg} />
+        <AdvancedImage cldImg={thumbImg}/>
       </div>
       <SplashScreen
         itemName={props.productFolder.name}
