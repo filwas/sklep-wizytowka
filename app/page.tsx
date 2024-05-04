@@ -7,26 +7,21 @@ import ParallaxImage from "./ui/pageSegments/ParallaxImage";
 import Footer from "./ui/Footer";
 import { listAllAssets, listAllImages, listSubfolders } from "./api/api";
 import UpButton from "./ui/simpleUiComponents/UpButton";
-import Carousel from "./ui/simpleUiComponents/Carousel";
-import SplashScreen from "./ui/imageTileSystem/SplashScreen";
 import { CloudinaryResource } from "./types/types";
 
 export default async function Home() {
   const fotoFolders = (await listSubfolders("FotoTiles")).folders;
   const parallaxPhoto = (await listAllImages("Descriptions")).resources;
   const descripAssets = (await listAllAssets("Descriptions")).resources;
-
-  console.log("\n\n\nKAKASRAKA\n\n\n");
-  console.log(parallaxPhoto);
-  console.log("\n\n\nKAKASRAKA\n\n\n");
+ 
 
   const oNasFile = descripAssets.find((file) => {
     return file.public_id.toLowerCase().includes("onas");
-  }) as CloudinaryResource;
+  }) as CloudinaryResource
 
   const kontaktFile = descripAssets.find((file) => {
     return file.public_id.toLowerCase().includes("kontakt");
-  }) as CloudinaryResource;
+  }) as CloudinaryResource
 
   //TODO: funkcja robiaca kolumny imageTilesow skokowo od szerokosci ekranu, imageTile width = 100%
   //ilosc kolumn = Math.floor(1+szerokosc ekranu/840px) czy cos takiego

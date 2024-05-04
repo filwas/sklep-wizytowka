@@ -1,5 +1,6 @@
 .textContainer {
   display: inherit;
+  justify-content: center;
 }
 
 .textElement {

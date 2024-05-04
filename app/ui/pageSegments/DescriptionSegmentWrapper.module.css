@@ -6,8 +6,8 @@
   align-content: center;
 }
 
-.segmentTopWrapper p {
-  max-width: 600px;
+.segmentTopWrapper pre {
+  margin: 20px;
 }
 
 .segmentName {
