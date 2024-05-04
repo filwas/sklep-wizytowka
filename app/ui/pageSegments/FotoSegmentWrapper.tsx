@@ -11,7 +11,6 @@ interface FotoSegmentWrapperProps {
 
 const FotoSegmentWrapper = async (props: FotoSegmentWrapperProps) => {
   const products = (await listSubfolders(props.folder.path)).folders;
-  //const isSmallScreen = useIsSmallScreen(768)
 
   return (
     <div id={props.folder.name} className={styles.segmentTopWrapper}>

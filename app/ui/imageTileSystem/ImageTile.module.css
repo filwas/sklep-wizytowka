@@ -1,15 +1,11 @@
 .imageTileWrapper {
   position: relative;
   background-color: black;
-  max-width: 510px;
-  max-height: 510px;
-  object-fit: cover;
+  z-index: 100;
 }
 
 .itemName {
   opacity: 100%;
-  max-width: 100%;
-  max-height: 100%;
   position: absolute;
   display: none;
   color: white;
@@ -19,11 +15,11 @@
 }
 
 .imageTileWrapper img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1/1;
-  object-fit: cover;
+  display: block;
+  box-sizing: inherit;
   transition: opacity 0.2s;
+  max-width: 100%;
+  height: auto;
 }
 
 .imageTileWrapper:hover img {
@@ -34,20 +30,3 @@
   display: block;
 }
 
-.splashWrap-enter {
-  opacity: 0;
-}
-
-.splashWrap-enter-active {
-  opacity: 1;
-  transition: opacity 0.3s ease;
-}
-
-.splashWrap-exit {
-  opacity: 1;
-}
-
-.splashWrap-exit-active {
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}

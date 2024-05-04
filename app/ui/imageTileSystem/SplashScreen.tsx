@@ -11,23 +11,44 @@ import classNames from "classnames";
 
 interface SplashScreenProps {
   itemName: string;
+  isVisible: boolean;
   fotos: CloudinaryResource[];
   description: CloudinaryResource;
-  closeHandler: () => void;
+  closeHandler?: () => void;
 }
 
 const SplashScreen = (props: SplashScreenProps) => {
   const isSmallScreen = useIsSmallScreen(768);
 
+  const splashScreenWrapper = classNames(
+    styles.splashScreenWrapper,
+    props.isVisible ? styles.visible : ""
+  );
+
+  const carouselPlusTextWrapper = classNames(
+    styles.carouselPlusTextWrapper,
+    isSmallScreen ? styles.carouselPlusTextSmall : ""
+  );
+
+  const splashCarouselWrapper = classNames(
+    styles.splashCarouselWrapper,
+    isSmallScreen ? styles.carouselSmall : styles.carouselBig
+  );
+
+  const textWrapper = classNames(
+    styles.textWrapper,
+    isSmallScreen ? styles.textSmall : styles.textBig
+  );
+
   return (
-    <div className={styles.splashScreenWrapper}>
-      <div
-        className={styles.carouselPlusTextWrapper}
-        style={{ flexDirection: isSmallScreen ? "column" : "row" }}
-      >
-        <Carousel fotos={props.fotos} />
-        <div className={styles.textWrapper}>
-          <h1>{props.itemName}</h1>
+    <div className={splashScreenWrapper}>
+      <div className={carouselPlusTextWrapper}>
+        <div className={splashCarouselWrapper}>
+          {isSmallScreen && <h1>{props.itemName}</h1>}
+          <Carousel fotos={props.fotos} />
+        </div>
+        <div className={textWrapper}>
+          {!isSmallScreen && <h1>{props.itemName}</h1>}
           <TextElement textSourceUrl={props.description.url} />
         </div>
       </div>
