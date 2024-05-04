@@ -2,6 +2,7 @@
     max-width: 100%;
     max-height: inherit;
     height: inherit;
+    width: inherit;
     display: inline-flex;
     align-items: center;
 }
@@ -9,5 +10,6 @@
 .carouselWrapper img{
     overflow:auto;
     height: inherit;
+    width: inherit;
 }
 

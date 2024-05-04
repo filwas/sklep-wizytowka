@@ -44,7 +44,9 @@
 
 .carouselBig {
   flex: 0 0 80%;
-  height: 95%;
+  height: auto;
+  max-height: 95%;
+  max-width: 80%;
 }
 
 .carouselSmall {
@@ -73,6 +75,7 @@
 }
 
 .textBig {
+  padding-right: 25px;
   margin: 0;
 }
 
