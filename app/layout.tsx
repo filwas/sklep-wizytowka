@@ -34,7 +34,7 @@ export default function RootLayout({
           sizes="any"
         />
       </head>
-      <body className={`${raleway.className} antialised`}>
+      <body className={`${raleway.className} antialised`} style={{ margin: 0 }}>
         <Providers>{children}</Providers>
       </body>
     </html>

@@ -11,6 +11,8 @@ import { autoGravity } from "@cloudinary/url-gen/qualifiers/gravity";
 import { faces } from "@cloudinary/url-gen/qualifiers/focusOn";
 import { AspectRatio } from "@cloudinary/url-gen/qualifiers";
 import classNames from "classnames";
+import { Transformation } from "@cloudinary/url-gen/index";
+import { name } from "@cloudinary/url-gen/actions/namedTransformation";
 
 interface ImageTileProps {
   productFolder: Folder;
@@ -23,6 +25,8 @@ const ImageTile = (props: ImageTileProps) => {
   const handleTileClick = () => {
     setIsSplashOpen((prev) => !prev);
   };
+
+  
 
   useEffect(() => {
     if (isSplashOpen) {
@@ -39,11 +43,7 @@ const ImageTile = (props: ImageTileProps) => {
   const description = props.description;
 
   const cld = useCloudinary();
-  const thumbImg = cld.image(fotos[0].public_id).resize(
-    fill(500, 500)
-      .aspectRatio(1 / 1)
-      .gravity(autoGravity())
-  );
+  const thumbImg = cld.image(fotos[0].public_id).namedTransformation(name("createSquareImage"));
 
   return (
     <>
