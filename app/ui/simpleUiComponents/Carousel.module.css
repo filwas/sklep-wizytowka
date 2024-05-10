@@ -7,7 +7,32 @@
     align-items: center;
 }
 
+.smallCarouselWrapper{
+    max-width: 100%;
+    max-height: inherit;
+    height: inherit;
+    width: inherit;
+    display: inline-flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.smallArrowsWrapper{
+    display: inherit;
+    flex-direction: row;
+}
+
+.smallSeparator{
+    width: 50px;
+}
+
 .carouselWrapper img{
+    overflow:auto;
+    height: inherit;
+    width: inherit;
+}
+
+.smallCarouselWrapper img {
     overflow:auto;
     height: inherit;
     width: inherit;

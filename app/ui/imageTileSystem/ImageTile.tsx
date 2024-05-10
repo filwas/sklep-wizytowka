@@ -7,6 +7,8 @@ import { CloudinaryResource, Folder } from "@/app/types/types";
 import { useCloudinary } from "@/app/providers";
 import { AdvancedImage, lazyload } from "@cloudinary/react";
 import { name } from "@cloudinary/url-gen/actions/namedTransformation";
+import useIsSmallScreen from "@/utils/useIsSmallScreen";
+import classNames from "classnames";
 
 interface ImageTileProps {
   productFolder: Folder;
@@ -16,13 +18,13 @@ interface ImageTileProps {
 
 const ImageTile = (props: ImageTileProps) => {
   const itemName = props.productFolder.name.replaceAll(/\d+/gi,"")
+  const isSmallScreen = useIsSmallScreen(768)
+  const nameStyles = classNames(isSmallScreen ? styles.smallItemName : styles.bigItemName)
 
   const [isSplashOpen, setIsSplashOpen] = useState(false);
   const handleTileClick = () => {
     setIsSplashOpen((prev) => !prev);
   };
-
-  
 
   useEffect(() => {
     if (isSplashOpen) {
@@ -47,7 +49,7 @@ const ImageTile = (props: ImageTileProps) => {
   return (
     <>
       <div className={styles.imageTileWrapper} onClick={handleTileClick}>
-        <div className={styles.itemName}>{itemName}</div>
+        <div className={nameStyles}>{itemName}</div>
         <AdvancedImage cldImg={thumbImg} plugins={[lazyload()]}/>
       </div>
       <SplashScreen

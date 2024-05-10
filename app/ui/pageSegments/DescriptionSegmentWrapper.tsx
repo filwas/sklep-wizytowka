@@ -13,7 +13,7 @@ const DescriptionSegmentWrapper = (props: DescriptionSegmentWrapperProps) => {
   return (
     <div className={styles.segmentTopWrapper} id={props.customName}>
       <div className={styles.topLine} />
-      <div className={styles.segmentName}>{props.customName}</div>
+      <div className={styles.segmentName}>{props.customName.toUpperCase()}</div>
       <TextElement textSourceUrl={props.descriptionTextFile.secure_url} />
       <div className={styles.bottomLine} />
     </div>

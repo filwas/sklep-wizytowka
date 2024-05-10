@@ -2,6 +2,7 @@ import styles from "./FotoSegmentWrapper.module.css";
 import ImageTile from "../imageTileSystem/ImageTile";
 import { Folder } from "@/app/types/types";
 import { listAllAssets, listAllImages, listSubfolders } from "@/app/api/api";
+import useIsSmallScreen from "@/utils/useIsSmallScreen";
 
 interface FotoSegmentWrapperProps {
   folder: Folder;
@@ -9,7 +10,7 @@ interface FotoSegmentWrapperProps {
 
 const FotoSegmentWrapper = async (props: FotoSegmentWrapperProps) => {
   const products = (await listSubfolders(props.folder.path)).folders;
-  const folderName = props.folder.name.replaceAll(/\d+/gi,"")
+  const folderName = props.folder.name.replaceAll(/\d+/gi,"").toUpperCase()
 
   return (
     <div id={props.folder.name} className={styles.segmentTopWrapper}>
