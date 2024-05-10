@@ -37,16 +37,17 @@ const Header = (props: HeaderProps) => {
   return (
     <div className={headerWrapper}>
       <a href="#" onClick={scrollToSegment}>
-        SAUNY
+        OGRODOWY CHILLOUT
       </a>
       <div className={styles.rightSideWrap}>
         <a href="#O nas" onClick={scrollToSegment}>
           O NAS
         </a>
         {props.folders.map((folder, i) => {
+          const folderName = folder.name.replaceAll(/\d+/gi, "");
           return (
             <a href={`#${folder.name}`} onClick={scrollToSegment} key={i}>
-              {folder.name.toUpperCase()}
+              {folderName.toUpperCase()}
             </a>
           );
         })}

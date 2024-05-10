@@ -5,12 +5,7 @@ import styles from "./ParallaxImage.module.css";
 import { ParallaxBanner, ParallaxBannerLayer } from "react-scroll-parallax";
 import { useCloudinary } from "@/app/providers";
 import { AdvancedImage } from "@cloudinary/react";
-import { crop } from "@cloudinary/url-gen/actions/resize";
-import { AspectRatio } from "@cloudinary/url-gen/qualifiers";
-import { ar16X9 } from "@cloudinary/url-gen/qualifiers/aspectRatio";
-import { Cloudinary } from "@cloudinary/url-gen/index";
-import { focusOn } from "@cloudinary/url-gen/qualifiers/gravity";
-import { faces } from "@cloudinary/url-gen/qualifiers/focusOn";
+
 import { name } from "@cloudinary/url-gen/actions/namedTransformation";
 
 interface ParallaxImageProps {
@@ -26,8 +21,8 @@ export default function ParallaxImage(props: ParallaxImageProps) {
       <ParallaxBanner style={{ aspectRatio: "2/1" }}>
         <ParallaxBannerLayer style={{ zIndex: "1000" }}>
           <div className={styles.parallaxText}>
-            <h1>WUWUWU SAUNY</h1>
-            <h2>DWADZIEŚCIA CZTERY PE EL</h2>
+            <h1>OGRODOWY CHILLOUT</h1>
+            <h2>SAUNY, BALIE I AKCESORIA</h2>
           </div>
         </ParallaxBannerLayer>
         <ParallaxBannerLayer speed={-50} >

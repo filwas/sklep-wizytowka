@@ -1,17 +1,11 @@
 "use client";
-import { ListBlobResultBlob } from "@vercel/blob";
+
 import styles from "./ImageTile.module.css";
 import { useEffect, useState } from "react";
 import SplashScreen from "./SplashScreen";
 import { CloudinaryResource, Folder } from "@/app/types/types";
 import { useCloudinary } from "@/app/providers";
-import { AdvancedImage } from "@cloudinary/react";
-import { crop, fill, thumbnail } from "@cloudinary/url-gen/actions/resize";
-import { autoGravity } from "@cloudinary/url-gen/qualifiers/gravity";
-import { faces } from "@cloudinary/url-gen/qualifiers/focusOn";
-import { AspectRatio } from "@cloudinary/url-gen/qualifiers";
-import classNames from "classnames";
-import { Transformation } from "@cloudinary/url-gen/index";
+import { AdvancedImage, lazyload } from "@cloudinary/react";
 import { name } from "@cloudinary/url-gen/actions/namedTransformation";
 
 interface ImageTileProps {
@@ -21,6 +15,8 @@ interface ImageTileProps {
 }
 
 const ImageTile = (props: ImageTileProps) => {
+  const itemName = props.productFolder.name.replaceAll(/\d+/gi,"")
+
   const [isSplashOpen, setIsSplashOpen] = useState(false);
   const handleTileClick = () => {
     setIsSplashOpen((prev) => !prev);
@@ -43,16 +39,19 @@ const ImageTile = (props: ImageTileProps) => {
   const description = props.description;
 
   const cld = useCloudinary();
-  const thumbImg = cld.image(fotos[0].public_id).namedTransformation(name("createSquareImage"));
+
+  const thumbObject = props.fotos.find(object => object.public_id.includes("thumbnail")) || props.fotos[0]
+    
+  const thumbImg = cld.image(thumbObject.public_id).namedTransformation(name("createSquareImage"));
 
   return (
     <>
       <div className={styles.imageTileWrapper} onClick={handleTileClick}>
-        <div className={styles.itemName}>{props.productFolder.name}</div>
-        <AdvancedImage cldImg={thumbImg}/>
+        <div className={styles.itemName}>{itemName}</div>
+        <AdvancedImage cldImg={thumbImg} plugins={[lazyload()]}/>
       </div>
       <SplashScreen
-        itemName={props.productFolder.name}
+        itemName={itemName}
         fotos={fotos}
         description={description}
         isVisible={isSplashOpen}

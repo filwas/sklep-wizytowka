@@ -7,27 +7,34 @@ import ParallaxImage from "./ui/pageSegments/ParallaxImage";
 import Footer from "./ui/Footer";
 import { listAllAssets, listAllImages, listSubfolders } from "./api/api";
 import UpButton from "./ui/simpleUiComponents/UpButton";
-import { CloudinaryResource } from "./types/types";
+import { CloudinaryResource, Folder } from "./types/types";
+import folderSorter from "./helpers/folderSorter";
 
 export default async function Home() {
   const fotoFolders = (await listSubfolders("FotoTiles")).folders;
   const parallaxPhoto = (await listAllImages("Descriptions")).resources;
   const descripAssets = (await listAllAssets("Descriptions")).resources;
- 
 
   const oNasFile = descripAssets.find((file) => {
     return file.public_id.toLowerCase().includes("onas");
-  }) as CloudinaryResource
+  }) as CloudinaryResource;
 
   const kontaktFile = descripAssets.find((file) => {
     return file.public_id.toLowerCase().includes("kontakt");
-  }) as CloudinaryResource
+  }) as CloudinaryResource;
 
   //TODO: funkcja robiaca kolumny imageTilesow skokowo od szerokosci ekranu, imageTile width = 100%
   //ilosc kolumn = Math.floor(1+szerokosc ekranu/840px) czy cos takiego
 
   //albo moze zamiast tego co na gorze jakos ogarnac po prostu zeby wielkosc obrazka nie byla taka sztywna
 
+
+  //TODO dwa: dodac onloading dla fotek!!!!!
+
+
+
+  fotoFolders.sort(folderSorter);
+  
   return (
     <div style={{ position: "absolute", width: "100%" }}>
       <Header folders={fotoFolders} />
