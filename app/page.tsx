@@ -5,22 +5,34 @@ import DescriptionSegmentWrapper from "./ui/pageSegments/DescriptionSegmentWrapp
 
 import ParallaxImage from "./ui/pageSegments/ParallaxImage";
 import Footer from "./ui/Footer";
-import { listAllAssets, listAllImages, listSubfolders } from "./api/api";
+import { listTotalAssets, listTotalImages } from "./api/api";
 import UpButton from "./ui/simpleUiComponents/UpButton";
-import { CloudinaryResource, Folder } from "./types/types";
-import folderSorter from "./helpers/folderSorter";
+import { CloudinaryResource, Folder, FolderStructure } from "./types/types";
+import useGetFolderStructure from "@/utils/useGetFolderStructure";
 
 export default async function Home() {
-  const fotoFolders = (await listSubfolders("FotoTiles")).folders;
-  const parallaxPhoto = (await listAllImages("Descriptions")).resources;
-  const descripAssets = (await listAllAssets("Descriptions")).resources;
+  const totalImages = await listTotalImages(500);
+  const totalAssets = await listTotalAssets(500);
 
-  const oNasFile = descripAssets.find((file) => {
+  const combinedAssets = [...totalImages.resources, ...totalAssets.resources];
+
+  const folderStructure = useGetFolderStructure(combinedAssets);
+  const fotoTilesFolderStructure = folderStructure["FotoTiles"] as FolderStructure;
+  const fotoSegmentNames = Object.keys(fotoTilesFolderStructure);
+  const descriptionAssets = folderStructure[
+    "Descriptions"
+  ] as CloudinaryResource[];
+
+  const oNasFile = descriptionAssets.find((file) => {
     return file.public_id.toLowerCase().includes("onas");
   }) as CloudinaryResource;
 
-  const kontaktFile = descripAssets.find((file) => {
+  const kontaktFile = descriptionAssets.find((file) => {
     return file.public_id.toLowerCase().includes("kontakt");
+  }) as CloudinaryResource;
+
+  const parallaxPhoto = descriptionAssets.find((file) => {
+    return file.resource_type === "image";
   }) as CloudinaryResource;
 
   //TODO: funkcja robiaca kolumny imageTilesow skokowo od szerokosci ekranu, imageTile width = 100%
@@ -28,24 +40,25 @@ export default async function Home() {
 
   //albo moze zamiast tego co na gorze jakos ogarnac po prostu zeby wielkosc obrazka nie byla taka sztywna
 
-
   //TODO dwa: dodac onloading dla fotek!!!!!
 
-
-
-  fotoFolders.sort(folderSorter);
-  
   return (
     <div style={{ position: "absolute", width: "100%" }}>
-      <Header folders={fotoFolders} />
-      <ParallaxImage foto={parallaxPhoto[0]} />
+      <Header folders={fotoSegmentNames} />
+      <ParallaxImage foto={parallaxPhoto} />
       <UpButton />
       <DescriptionSegmentWrapper
         descriptionTextFile={oNasFile}
         customName="O nas"
       />
-      {fotoFolders.map((folder, i) => {
-        return <FotoSegmentWrapper folder={folder} key={i} />;
+      {fotoSegmentNames.map((segmentName, i) => {
+        return (
+          <FotoSegmentWrapper
+            folderStructure={fotoTilesFolderStructure}
+            folderName={segmentName}
+            key={i}
+          />
+        );
       })}
       <DescriptionSegmentWrapper
         descriptionTextFile={kontaktFile}

@@ -29,3 +29,7 @@ export type CloudinaryResource = {
 export type CloudinaryResponse = {
   resources: CloudinaryResource[];
 };
+
+export interface FolderStructure {
+  [key: string]: FolderStructure | CloudinaryResource[];
+}

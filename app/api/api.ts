@@ -71,3 +71,35 @@ export async function listAllAssets(prefix?: string) {
     throw error;
   }
 }
+
+export async function listTotalImages(amount: number) {
+  try {
+    const response = await fetch(
+      `${API_BASE_URL}/resources/image/upload?max_results=${amount}`,
+      REQUEST_OPTIONS
+    );
+
+    const data = await response.json();
+
+    return data as CloudinaryResponse;
+  } catch (error) {
+    console.error("Error listing assets by folder:", error);
+    throw error;
+  }
+}
+
+export async function listTotalAssets(amount: number) {
+  try {
+    const response = await fetch(
+      `${API_BASE_URL}/resources/raw/upload?max_results=${amount}`,
+      REQUEST_OPTIONS
+    );
+
+    const data = await response.json();
+
+    return data as CloudinaryResponse;
+  } catch (error) {
+    console.error("Error listing assets by folder:", error);
+    throw error;
+  }
+}

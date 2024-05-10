@@ -1,35 +1,31 @@
 import styles from "./FotoSegmentWrapper.module.css";
 import ImageTile from "../imageTileSystem/ImageTile";
-import { Folder } from "@/app/types/types";
+import { CloudinaryResource, Folder, FolderStructure } from "@/app/types/types";
 import { listAllAssets, listAllImages, listSubfolders } from "@/app/api/api";
 import useIsSmallScreen from "@/utils/useIsSmallScreen";
 
 interface FotoSegmentWrapperProps {
-  folder: Folder;
+  folderStructure: FolderStructure;
+  folderName: string;
 }
 
 const FotoSegmentWrapper = async (props: FotoSegmentWrapperProps) => {
-  const products = (await listSubfolders(props.folder.path)).folders;
-  const folderName = props.folder.name.replaceAll(/\d+/gi,"").toUpperCase()
+  const folderName = props.folderName.replaceAll(/\d+/gi, "").toUpperCase();
+  const productFolderStructure = props.folderStructure[props.folderName] as CloudinaryResource[]
+  const productNames = Object.keys(productFolderStructure);
+
+
 
   return (
-    <div id={props.folder.name} className={styles.segmentTopWrapper}>
+    <div id={props.folderName} className={styles.segmentTopWrapper}>
       <div className={styles.segmentName}>{folderName}</div>
       <div className={styles.imageTilesWrapper}>
-        {products.map(async (productFolder, i) => {
-
-          const fotos = (await listAllImages(productFolder.path)).resources;
-          if (fotos.length === 0){return}
-
-          const description = (await listAllAssets(productFolder.path))
-            .resources[0];
-            
+        {productNames.map(async (productName, i) => {
           return (
             <div className={styles.singleItemWrapper} key={i}>
               <ImageTile
-                productFolder={productFolder}
-                fotos={fotos}
-                description={description}
+                productResources={productFolderStructure[productName]}
+                productName={productName}
               />
             </div>
           );

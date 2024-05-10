@@ -60,7 +60,7 @@ const Carousel = (props: CarouselProps) => {
               handleCarouselPosition("left");
             }}
           />
-          <div className={styles.smallSeparator}/>
+          <div className={styles.smallSeparator} />
           <ArrowIcon
             side="right"
             onClick={() => {

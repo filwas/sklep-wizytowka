@@ -3,7 +3,7 @@
 import styles from "./ImageTile.module.css";
 import { useEffect, useState } from "react";
 import SplashScreen from "./SplashScreen";
-import { CloudinaryResource, Folder } from "@/app/types/types";
+import { CloudinaryResource, Folder, FolderStructure } from "@/app/types/types";
 import { useCloudinary } from "@/app/providers";
 import { AdvancedImage, lazyload } from "@cloudinary/react";
 import { name } from "@cloudinary/url-gen/actions/namedTransformation";
@@ -11,15 +11,16 @@ import useIsSmallScreen from "@/utils/useIsSmallScreen";
 import classNames from "classnames";
 
 interface ImageTileProps {
-  productFolder: Folder;
-  fotos: CloudinaryResource[];
-  description: CloudinaryResource;
+  productResources: CloudinaryResource[];
+  productName: string;
 }
 
 const ImageTile = (props: ImageTileProps) => {
-  const itemName = props.productFolder.name.replaceAll(/\d+/gi,"")
-  const isSmallScreen = useIsSmallScreen(768)
-  const nameStyles = classNames(isSmallScreen ? styles.smallItemName : styles.bigItemName)
+  const itemName = props.productName.replaceAll(/\d+/gi, "");
+  const isSmallScreen = useIsSmallScreen(768);
+  const nameStyles = classNames(
+    isSmallScreen ? styles.smallItemName : styles.bigItemName
+  );
 
   const [isSplashOpen, setIsSplashOpen] = useState(false);
   const handleTileClick = () => {
@@ -37,20 +38,27 @@ const ImageTile = (props: ImageTileProps) => {
     };
   }, [isSplashOpen]);
 
-  const fotos = props.fotos;
-  const description = props.description;
+  const fotos = props.productResources.slice().filter((resource) => {
+    return resource.resource_type == "image";
+  });
+  const description = props.productResources.slice().filter((resource) => {
+    return resource.resource_type == "raw";
+  })[0];
 
   const cld = useCloudinary();
 
-  const thumbObject = props.fotos.find(object => object.public_id.includes("thumbnail")) || props.fotos[0]
-    
-  const thumbImg = cld.image(thumbObject.public_id).namedTransformation(name("createSquareImage"));
+  const thumbObject =
+    fotos.find((object) => object.public_id.includes("thumbnail")) || fotos[0];
+
+  const thumbImg = cld
+    .image(thumbObject.public_id)
+    .namedTransformation(name("createSquareImage"));
 
   return (
     <>
       <div className={styles.imageTileWrapper} onClick={handleTileClick}>
         <div className={nameStyles}>{itemName}</div>
-        <AdvancedImage cldImg={thumbImg} plugins={[lazyload()]}/>
+        <AdvancedImage cldImg={thumbImg} plugins={[lazyload()]} />
       </div>
       <SplashScreen
         itemName={itemName}
