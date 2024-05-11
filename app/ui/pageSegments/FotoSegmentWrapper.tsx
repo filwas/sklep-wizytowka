@@ -1,8 +1,6 @@
 import styles from "./FotoSegmentWrapper.module.css";
 import ImageTile from "../imageTileSystem/ImageTile";
 import { CloudinaryResource, Folder, FolderStructure } from "@/app/types/types";
-import { listAllAssets, listAllImages, listSubfolders } from "@/app/api/api";
-import useIsSmallScreen from "@/utils/useIsSmallScreen";
 
 interface FotoSegmentWrapperProps {
   folderStructure: FolderStructure;
@@ -11,10 +9,10 @@ interface FotoSegmentWrapperProps {
 
 const FotoSegmentWrapper = async (props: FotoSegmentWrapperProps) => {
   const folderName = props.folderName.replaceAll(/\d+/gi, "").toUpperCase();
-  const productFolderStructure = props.folderStructure[props.folderName] as CloudinaryResource[]
+  const productFolderStructure = props.folderStructure[
+    props.folderName
+  ] as FolderStructure;
   const productNames = Object.keys(productFolderStructure);
-
-
 
   return (
     <div id={props.folderName} className={styles.segmentTopWrapper}>
@@ -24,7 +22,9 @@ const FotoSegmentWrapper = async (props: FotoSegmentWrapperProps) => {
           return (
             <div className={styles.singleItemWrapper} key={i}>
               <ImageTile
-                productResources={productFolderStructure[productName]}
+                productResources={
+                  productFolderStructure[productName] as CloudinaryResource[]
+                }
                 productName={productName}
               />
             </div>
