@@ -17,6 +17,10 @@
   position: absolute;
 }
 
+.mobileMenuIcon{
+  margin: 6px 10px;
+}
+
 .headerWrapper a {
   font-size: 16px;
   align-content: inherit;

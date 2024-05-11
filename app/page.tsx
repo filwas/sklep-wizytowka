@@ -1,10 +1,10 @@
 import FotoSegmentWrapper from "./ui/pageSegments/FotoSegmentWrapper";
 
-import Header from "./ui/Header";
+import Header from "./ui/headerAndFooter/Header";
 import DescriptionSegmentWrapper from "./ui/pageSegments/DescriptionSegmentWrapper";
 
 import ParallaxImage from "./ui/pageSegments/ParallaxImage";
-import Footer from "./ui/Footer";
+import Footer from "./ui/headerAndFooter/Footer";
 import { listTotalAssets, listTotalImages } from "./api/api";
 import UpButton from "./ui/simpleUiComponents/UpButton";
 import { CloudinaryResource, Folder, FolderStructure } from "./types/types";
