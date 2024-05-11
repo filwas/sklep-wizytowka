@@ -1,15 +1,18 @@
 "use client";
 
 import styles from "./Header.module.css";
-import { Folder } from "../types/types";
+import { Folder } from "../../types/types";
 import classNames from "classnames";
 import useIsSmallScreen from "@/utils/useIsSmallScreen";
+import useGetScreenWidth from "@/utils/useGetScreenWidth";
+import { useState } from "react";
 
 interface HeaderProps {
   folders: string[];
 }
 const Header = (props: HeaderProps) => {
   function scrollToSegment(event: React.MouseEvent<HTMLAnchorElement>) {
+    console.log(screenWidth);
     event.preventDefault();
     const targetId = event.currentTarget.getAttribute("href")?.substring(1);
     const targetElement = document.getElementById(targetId || "");
@@ -26,8 +29,11 @@ const Header = (props: HeaderProps) => {
       });
     }
   }
+  const screenWidth = useGetScreenWidth()
+  const isSmallScreen = screenWidth <= 768;
+  const [isSmallMenuOpen, setIsSmallMenuOpen] = useState(false)
+  
 
-  const isSmallScreen = useIsSmallScreen(768);
 
   const headerWrapper = classNames(
     styles.headerWrapper,

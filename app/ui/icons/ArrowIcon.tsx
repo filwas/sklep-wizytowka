@@ -1,5 +1,3 @@
-import styles from "./ArrowIcon.module.css";
-
 interface ArrowIconProps {
   side: "left" | "right";
   onClick: (side: string) => void;
@@ -7,7 +5,7 @@ interface ArrowIconProps {
 const ArrowIcon = (props: ArrowIconProps) => {
   return (
     <div
-      className={styles.arrowWrapper}
+      style={{ margin: "10px" }}
       onClick={() => {
         props.onClick(props.side);
       }}
