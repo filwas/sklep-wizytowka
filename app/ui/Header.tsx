@@ -6,7 +6,7 @@ import classNames from "classnames";
 import useIsSmallScreen from "@/utils/useIsSmallScreen";
 
 interface HeaderProps {
-  folders: Folder[];
+  folders: string[];
 }
 const Header = (props: HeaderProps) => {
   function scrollToSegment(event: React.MouseEvent<HTMLAnchorElement>) {
@@ -37,16 +37,17 @@ const Header = (props: HeaderProps) => {
   return (
     <div className={headerWrapper}>
       <a href="#" onClick={scrollToSegment}>
-        SAUNY
+        OGRODOWY CHILLOUT
       </a>
       <div className={styles.rightSideWrap}>
         <a href="#O nas" onClick={scrollToSegment}>
           O NAS
         </a>
         {props.folders.map((folder, i) => {
+          const folderName = folder.replaceAll(/\d+/gi, "");
           return (
-            <a href={`#${folder.name}`} onClick={scrollToSegment} key={i}>
-              {folder.name.toUpperCase()}
+            <a href={`#${folder}`} onClick={scrollToSegment} key={i}>
+              {folderName.toUpperCase()}
             </a>
           );
         })}

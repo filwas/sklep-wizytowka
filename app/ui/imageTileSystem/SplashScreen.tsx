@@ -44,11 +44,11 @@ const SplashScreen = (props: SplashScreenProps) => {
     <div className={splashScreenWrapper}>
       <div className={carouselPlusTextWrapper}>
         <div className={splashCarouselWrapper}>
-          {isSmallScreen && <h1>{props.itemName}</h1>}
+          {isSmallScreen && <h1>{props.itemName.toUpperCase()}</h1>}
           <Carousel fotos={props.fotos} />
         </div>
         <div className={textWrapper}>
-          {!isSmallScreen && <h1>{props.itemName}</h1>}
+          {!isSmallScreen && <h1>{props.itemName.toUpperCase()}</h1>}
           <TextElement textSourceUrl={props.description.secure_url} />
         </div>
       </div>

@@ -1,32 +1,31 @@
 "use client";
-import { ListBlobResultBlob } from "@vercel/blob";
+
 import styles from "./ImageTile.module.css";
 import { useEffect, useState } from "react";
 import SplashScreen from "./SplashScreen";
-import { CloudinaryResource, Folder } from "@/app/types/types";
+import { CloudinaryResource, Folder, FolderStructure } from "@/app/types/types";
 import { useCloudinary } from "@/app/providers";
-import { AdvancedImage } from "@cloudinary/react";
-import { crop, fill, thumbnail } from "@cloudinary/url-gen/actions/resize";
-import { autoGravity } from "@cloudinary/url-gen/qualifiers/gravity";
-import { faces } from "@cloudinary/url-gen/qualifiers/focusOn";
-import { AspectRatio } from "@cloudinary/url-gen/qualifiers";
-import classNames from "classnames";
-import { Transformation } from "@cloudinary/url-gen/index";
+import { AdvancedImage, lazyload } from "@cloudinary/react";
 import { name } from "@cloudinary/url-gen/actions/namedTransformation";
+import useIsSmallScreen from "@/utils/useIsSmallScreen";
+import classNames from "classnames";
 
 interface ImageTileProps {
-  productFolder: Folder;
-  fotos: CloudinaryResource[];
-  description: CloudinaryResource;
+  productResources: CloudinaryResource[];
+  productName: string;
 }
 
 const ImageTile = (props: ImageTileProps) => {
+  const itemName = props.productName.replaceAll(/\d+/gi, "");
+  const isSmallScreen = useIsSmallScreen(768);
+  const nameStyles = classNames(
+    isSmallScreen ? styles.smallItemName : styles.bigItemName
+  );
+
   const [isSplashOpen, setIsSplashOpen] = useState(false);
   const handleTileClick = () => {
     setIsSplashOpen((prev) => !prev);
   };
-
-  
 
   useEffect(() => {
     if (isSplashOpen) {
@@ -39,20 +38,30 @@ const ImageTile = (props: ImageTileProps) => {
     };
   }, [isSplashOpen]);
 
-  const fotos = props.fotos;
-  const description = props.description;
+  const fotos = props.productResources.slice().filter((resource) => {
+    return resource.resource_type == "image";
+  });
+  const description = props.productResources.slice().filter((resource) => {
+    return resource.resource_type == "raw";
+  })[0];
 
   const cld = useCloudinary();
-  const thumbImg = cld.image(fotos[0].public_id).namedTransformation(name("createSquareImage"));
+
+  const thumbObject =
+    fotos.find((object) => object.public_id.includes("thumbnail")) || fotos[0];
+
+  const thumbImg = cld
+    .image(thumbObject.public_id)
+    .namedTransformation(name("createSquareImage"));
 
   return (
     <>
       <div className={styles.imageTileWrapper} onClick={handleTileClick}>
-        <div className={styles.itemName}>{props.productFolder.name}</div>
-        <AdvancedImage cldImg={thumbImg} />
+        <div className={nameStyles}>{itemName}</div>
+        <AdvancedImage cldImg={thumbImg} plugins={[lazyload()]} />
       </div>
       <SplashScreen
-        itemName={props.productFolder.name}
+        itemName={itemName}
         fotos={fotos}
         description={description}
         isVisible={isSplashOpen}

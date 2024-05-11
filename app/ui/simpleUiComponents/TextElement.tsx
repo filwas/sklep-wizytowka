@@ -38,7 +38,13 @@ const TextElement = (props: TextElementProps) => {
 
     const textWithClickableLinks = textWithEmailLinks.replace(
       urlRegex,
-      '<a href="$&" target="_blank">$&</a>'
+      (match) => {
+        if (match.startsWith("http://") || match.startsWith("https://")) {
+          return `<a href="${match}" target="_blank">${match}</a>`;
+        } else {
+          return `<a href="http://${match}" target="_blank">${match}</a>`;
+        }
+      }
     );
 
     return textWithClickableLinks;

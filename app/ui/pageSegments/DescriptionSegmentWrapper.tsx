@@ -2,32 +2,19 @@ import styles from "./DescriptionSegmentWrapper.module.css";
 
 import TextElement from "../simpleUiComponents/TextElement";
 import { list } from "@vercel/blob";
+import { CloudinaryResource, Folder } from "@/app/types/types";
 
 interface DescriptionSegmentWrapperProps {
-  folder: string;
-  customName?: string;
+  descriptionTextFile: CloudinaryResource;
+  customName: string;
 }
 
-const DescriptionSegmentWrapper = async (
-  props: DescriptionSegmentWrapperProps
-) => {
-  const { blobs } = await list({
-    prefix: props.folder,
-  });
-
-  const textBlobs = blobs.filter(
-    (blob) =>
-      blob.url.endsWith(".txt") && blob.url.toLowerCase().includes("onas")
-  );
-
+const DescriptionSegmentWrapper = (props: DescriptionSegmentWrapperProps) => {
   return (
-    <div
-      className={styles.segmentTopWrapper}
-      id={props.customName ? props.customName : props.folder}
-    >
+    <div className={styles.segmentTopWrapper} id={props.customName}>
       <div className={styles.topLine} />
-      <div className={styles.segmentName}>{props.customName}</div>
-      <TextElement textSourceUrl={textBlobs[0].url} />
+      <div className={styles.segmentName}>{props.customName.toUpperCase()}</div>
+      <TextElement textSourceUrl={props.descriptionTextFile.secure_url} />
       <div className={styles.bottomLine} />
     </div>
   );

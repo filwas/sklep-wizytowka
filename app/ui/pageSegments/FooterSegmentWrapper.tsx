@@ -22,7 +22,7 @@ const FooterSegmentWrapper = async (
       className={styles.segmentTopWrapper}
       id={props.customName ? props.customName : props.folder}
     >
-      <div className={styles.segmentName}>{props.customName}</div>
+      <div className={styles.segmentName}>{props.customName?.toUpperCase()}</div>
       <TextElement textSourceUrl={textBlobs[0].url} />
     </div>
   );

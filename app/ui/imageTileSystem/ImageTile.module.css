@@ -4,7 +4,7 @@
   z-index: 100;
 }
 
-.itemName {
+.bigItemName {
   opacity: 100%;
   position: absolute;
   display: none;
@@ -12,6 +12,15 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.smallItemName {
+  top: 1%;
+  left: 1%;
+  position: absolute;
+  display: block;
+  background-color: white;
+  opacity: 60%;
 }
 
 .imageTileWrapper img {
@@ -29,4 +38,3 @@
 .imageTileWrapper:hover div {
   display: block;
 }
-
