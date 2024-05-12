@@ -14,6 +14,12 @@ const FotoSegmentWrapper = async (props: FotoSegmentWrapperProps) => {
   ] as FolderStructure;
   const productNames = Object.keys(productFolderStructure);
 
+  productNames.sort((a: string, b: string) => {
+    const numA = parseInt(a.match(/\d/g)?.[0] ?? "")
+    const numB = parseInt(b.match(/\d/g)?.[0] ?? "")
+    return (numA-numB);
+  })
+
   return (
     <div id={props.folderName} className={styles.segmentTopWrapper}>
       <div className={styles.segmentName}>{folderName}</div>

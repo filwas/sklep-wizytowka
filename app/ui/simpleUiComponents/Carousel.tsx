@@ -30,7 +30,6 @@ const Carousel = (props: CarouselProps) => {
         .width(1200)
         .height(800)
         .gravity(autoGravity())
-        .background(generativeFill())
     )
     .delivery(quality(auto()))
     .delivery(format(auto()));
