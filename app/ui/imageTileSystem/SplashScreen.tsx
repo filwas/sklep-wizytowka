@@ -42,14 +42,16 @@ const SplashScreen = (props: SplashScreenProps) => {
 
   return (
     <div className={splashScreenWrapper}>
-      <div className={carouselPlusTextWrapper}>
-        <div className={splashCarouselWrapper}>
-          {isSmallScreen && <h1>{props.itemName.toUpperCase()}</h1>}
-          <Carousel fotos={props.fotos} />
-        </div>
-        <div className={textWrapper}>
-          {!isSmallScreen && <h1>{props.itemName.toUpperCase()}</h1>}
-          <TextElement textSourceUrl={props.description.secure_url} />
+      <div className={styles.overflowWrapper}>
+        <div className={carouselPlusTextWrapper}>
+          <div className={splashCarouselWrapper}>
+            {isSmallScreen && <h1>{props.itemName.toUpperCase()}</h1>}
+            <Carousel fotos={props.fotos} />
+          </div>
+          <div className={textWrapper}>
+            {!isSmallScreen && <h1>{props.itemName.toUpperCase()}</h1>}
+            <TextElement textSourceUrl={props.description.secure_url} />
+          </div>
         </div>
       </div>
       <button onClick={props.closeHandler}>

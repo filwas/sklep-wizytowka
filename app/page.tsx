@@ -7,18 +7,27 @@ import ParallaxImage from "./ui/pageSegments/ParallaxImage";
 import Footer from "./ui/headerAndFooter/Footer";
 import { listTotalAssets, listTotalImages } from "./api/api";
 import UpButton from "./ui/simpleUiComponents/UpButton";
-import { CloudinaryResource, Folder, FolderStructure } from "./types/types";
+import { CloudinaryResource, CloudinaryResponse, Folder, FolderStructure } from "./types/types";
 import useGetFolderStructure from "@/utils/useGetFolderStructure";
+import { useEffect, useState } from "react";
 
 export default async function Home() {
-  const totalImages = await listTotalImages(500);
-  const totalAssets = await listTotalAssets(500);
+    const totalImages = await listTotalImages(500);
+    const totalAssets = await listTotalAssets(500);
+
 
   const combinedAssets = [...totalImages.resources, ...totalAssets.resources];
 
   const folderStructure = useGetFolderStructure(combinedAssets);
   const fotoTilesFolderStructure = folderStructure["FotoTiles"] as FolderStructure;
   const fotoSegmentNames = Object.keys(fotoTilesFolderStructure);
+
+  fotoSegmentNames.sort((a: string, b: string) => {
+    const numA = parseInt(a.match(/\d/g)?.[0] ?? "")
+    const numB = parseInt(b.match(/\d/g)?.[0] ?? "")
+    return (numA-numB);
+  })
+
   const descriptionAssets = folderStructure[
     "Descriptions"
   ] as CloudinaryResource[];
@@ -40,7 +49,6 @@ export default async function Home() {
 
   //albo moze zamiast tego co na gorze jakos ogarnac po prostu zeby wielkosc obrazka nie byla taka sztywna
 
-  //TODO dwa: dodac onloading dla fotek!!!!!
 
   return (
     <div style={{ position: "absolute", width: "100%" }}>
@@ -68,17 +76,3 @@ export default async function Home() {
     </div>
   );
 }
-
-/**
-      <div style={{ position: "absolute", width: "100%" }}>
-      <Header folders={fotoFolders} />
-      <ParallaxImage foto={parallaxPhoto[0]} />
-      <UpButton />
-      <DescriptionSegmentWrapper folder="HomeScreen/" customName="O nas" />
-      {fotoFolders.map((folder, i) => {
-        return <FotoSegmentWrapper folder={folder} key={i} />;
-      })}
-      <DescriptionSegmentWrapper folder="HomeScreen/" customName="Kontakt" />
-      <Footer />
-    </div>
- */

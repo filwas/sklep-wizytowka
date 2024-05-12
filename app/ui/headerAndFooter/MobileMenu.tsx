@@ -19,26 +19,28 @@ const MobileMenu = (props: MobileMenuProps) => {
     styles.mobileMenuWrapper,
     props.isOpen ? styles.visible : ""
   );
+
   return (
     <div className={mobileMenuWrapper}>
-      <a href="#" onClick={handleClick}>
-        OGRODOWY CHILLOUT
-      </a>
-
-      <a href="#O nas" onClick={handleClick}>
-        O NAS
-      </a>
-      {props.folders.map((folder, i) => {
-        const folderName = folder.replaceAll(/\d+/gi, "");
-        return (
-          <a href={`#${folder}`} onClick={handleClick} key={i}>
-            {folderName.toUpperCase()}
-          </a>
-        );
-      })}
-      <a href="#Kontakt" onClick={handleClick}>
-        KONTAKT
-      </a>
+      <div className={styles.innerWrapper}>
+        <a href="#" onClick={handleClick} style={{fontSize:"24px"}}>
+          OGRODOWY CHILLOUT
+        </a>
+        <a href="#O nas" onClick={handleClick}>
+          O NAS
+        </a>
+        {props.folders.map((folder, i) => {
+          const folderName = folder.replaceAll(/\d+/gi, "");
+          return (
+            <a href={`#${folder}`} onClick={handleClick} key={i}>
+              {folderName.toUpperCase()}
+            </a>
+          );
+        })}
+        <a href="#Kontakt" onClick={handleClick}>
+          KONTAKT
+        </a>
+      </div>
       <button onClick={props.closeHandler}>
         <CrossIcon />
       </button>
