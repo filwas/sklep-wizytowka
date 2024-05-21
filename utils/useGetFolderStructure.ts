@@ -1,4 +1,4 @@
-import { CloudinaryResource, CloudinaryResponse } from "@/app/types/types";
+import { CloudinaryResource } from "@/app/types/types";
 
 interface FolderStructure {
   [key: string]: FolderStructure | CloudinaryResource[];

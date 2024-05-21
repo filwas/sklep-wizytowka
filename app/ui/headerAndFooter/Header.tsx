@@ -1,9 +1,7 @@
 "use client";
 
 import styles from "./Header.module.css";
-import { Folder } from "../../types/types";
 import classNames from "classnames";
-import useIsSmallScreen from "@/utils/useIsSmallScreen";
 import useGetScreenWidth from "@/utils/useGetScreenWidth";
 import { useEffect, useState } from "react";
 import MobileMenuIcon from "../icons/MobileMenuIcon";

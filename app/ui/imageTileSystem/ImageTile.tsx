@@ -3,12 +3,16 @@
 import styles from "./ImageTile.module.css";
 import { useEffect, useState } from "react";
 import SplashScreen from "./SplashScreen";
-import { CloudinaryResource, Folder, FolderStructure } from "@/app/types/types";
+import { CloudinaryResource } from "@/app/types/types";
 import { useCloudinary } from "@/app/providers";
 import { AdvancedImage, lazyload } from "@cloudinary/react";
-import { name } from "@cloudinary/url-gen/actions/namedTransformation";
 import useIsSmallScreen from "@/utils/useIsSmallScreen";
 import classNames from "classnames";
+import { auto as autoResize } from "@cloudinary/url-gen/actions/resize";
+import { auto as autoQuality } from "@cloudinary/url-gen/qualifiers/quality";
+import { auto as autoFormat } from "@cloudinary/url-gen/qualifiers/format";
+import { autoGravity } from "@cloudinary/url-gen/qualifiers/gravity";
+import { format, quality } from "@cloudinary/url-gen/actions/delivery";
 
 interface ImageTileProps {
   productResources: CloudinaryResource[];
@@ -52,7 +56,9 @@ const ImageTile = (props: ImageTileProps) => {
 
   const thumbImg = cld
     .image(thumbObject.public_id)
-    .namedTransformation(name("createSquareImage"));
+    .resize(autoResize().width(1000).height(1000).gravity(autoGravity()))
+    .delivery(quality(autoQuality()))
+    .delivery(format(autoFormat()));
 
   return (
     <>
