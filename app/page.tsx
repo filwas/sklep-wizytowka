@@ -7,9 +7,8 @@ import ParallaxImage from "./ui/pageSegments/ParallaxImage";
 import Footer from "./ui/headerAndFooter/Footer";
 import { listTotalAssets, listTotalImages } from "./api/api";
 import UpButton from "./ui/simpleUiComponents/UpButton";
-import { CloudinaryResource, CloudinaryResponse, Folder, FolderStructure } from "./types/types";
+import { CloudinaryResource, FolderStructure } from "./types/types";
 import useGetFolderStructure from "@/utils/useGetFolderStructure";
-import { useEffect, useState } from "react";
 
 export default async function Home() {
     const totalImages = await listTotalImages(500);
@@ -54,7 +53,6 @@ export default async function Home() {
     <div style={{ position: "absolute", width: "100%" }}>
       <Header folders={fotoSegmentNames} />
       <ParallaxImage foto={parallaxPhoto} />
-      <UpButton />
       <DescriptionSegmentWrapper
         descriptionTextFile={oNasFile}
         customName="O nas"

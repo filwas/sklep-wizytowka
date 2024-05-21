@@ -18,7 +18,12 @@
 }
 
 .mobileMenuIcon{
-  margin: 6px 10px;
+  position: fixed;
+  right: 0px;
+  margin: 4px 4px;
+  padding: 2px 4px;
+  border-radius: 15%;
+  background: white 50%;
 }
 
 .headerWrapper a {
