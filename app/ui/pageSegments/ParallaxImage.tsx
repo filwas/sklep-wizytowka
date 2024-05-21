@@ -1,7 +1,7 @@
 "use client";
+
 import { CloudinaryResource } from "@/app/types/types";
 import styles from "./ParallaxImage.module.css";
-
 import { ParallaxBanner, ParallaxBannerLayer } from "react-scroll-parallax";
 import { useCloudinary } from "@/app/providers";
 import { AdvancedImage } from "@cloudinary/react";
@@ -14,8 +14,10 @@ interface ParallaxImageProps {
 
 export default function ParallaxImage(props: ParallaxImageProps) {
   const cld = useCloudinary();
-  const image = cld.image(props.foto.public_id).namedTransformation(name("createParallaxImage"));
-  
+  const image = cld
+    .image(props.foto.public_id)
+    .namedTransformation(name("createParallaxImage"));
+
   return (
     <div className={styles.parallaxWrapper} id="">
       <ParallaxBanner style={{ aspectRatio: "2/1" }}>
@@ -25,8 +27,8 @@ export default function ParallaxImage(props: ParallaxImageProps) {
             <h2>SAUNY, BALIE I AKCESORIA</h2>
           </div>
         </ParallaxBannerLayer>
-        <ParallaxBannerLayer speed={-50} >
-          <AdvancedImage cldImg={image} style={{width:"100%"}}/>
+        <ParallaxBannerLayer speed={-50}>
+          <AdvancedImage cldImg={image} style={{ width: "100%" }} />
         </ParallaxBannerLayer>
       </ParallaxBanner>
     </div>

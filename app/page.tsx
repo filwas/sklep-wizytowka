@@ -2,30 +2,29 @@ import FotoSegmentWrapper from "./ui/pageSegments/FotoSegmentWrapper";
 
 import Header from "./ui/headerAndFooter/Header";
 import DescriptionSegmentWrapper from "./ui/pageSegments/DescriptionSegmentWrapper";
-
 import ParallaxImage from "./ui/pageSegments/ParallaxImage";
 import Footer from "./ui/headerAndFooter/Footer";
 import { listTotalAssets, listTotalImages } from "./api/api";
-import UpButton from "./ui/simpleUiComponents/UpButton";
 import { CloudinaryResource, FolderStructure } from "./types/types";
 import useGetFolderStructure from "@/utils/useGetFolderStructure";
 
 export default async function Home() {
-    const totalImages = await listTotalImages(500);
-    const totalAssets = await listTotalAssets(500);
-
+  const totalImages = await listTotalImages(500);
+  const totalAssets = await listTotalAssets(500);
 
   const combinedAssets = [...totalImages.resources, ...totalAssets.resources];
 
   const folderStructure = useGetFolderStructure(combinedAssets);
-  const fotoTilesFolderStructure = folderStructure["FotoTiles"] as FolderStructure;
+  const fotoTilesFolderStructure = folderStructure[
+    "FotoTiles"
+  ] as FolderStructure;
   const fotoSegmentNames = Object.keys(fotoTilesFolderStructure);
 
   fotoSegmentNames.sort((a: string, b: string) => {
-    const numA = parseInt(a.match(/\d/g)?.[0] ?? "")
-    const numB = parseInt(b.match(/\d/g)?.[0] ?? "")
-    return (numA-numB);
-  })
+    const numA = parseInt(a.match(/\d/g)?.[0] ?? "");
+    const numB = parseInt(b.match(/\d/g)?.[0] ?? "");
+    return numA - numB;
+  });
 
   const descriptionAssets = folderStructure[
     "Descriptions"
@@ -42,12 +41,6 @@ export default async function Home() {
   const parallaxPhoto = descriptionAssets.find((file) => {
     return file.resource_type === "image";
   }) as CloudinaryResource;
-
-  //TODO: funkcja robiaca kolumny imageTilesow skokowo od szerokosci ekranu, imageTile width = 100%
-  //ilosc kolumn = Math.floor(1+szerokosc ekranu/840px) czy cos takiego
-
-  //albo moze zamiast tego co na gorze jakos ogarnac po prostu zeby wielkosc obrazka nie byla taka sztywna
-
 
   return (
     <div style={{ position: "absolute", width: "100%" }}>

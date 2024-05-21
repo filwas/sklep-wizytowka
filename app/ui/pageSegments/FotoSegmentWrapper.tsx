@@ -1,6 +1,6 @@
 import styles from "./FotoSegmentWrapper.module.css";
 import ImageTile from "../imageTileSystem/ImageTile";
-import { CloudinaryResource, Folder, FolderStructure } from "@/app/types/types";
+import { CloudinaryResource, FolderStructure } from "@/app/types/types";
 
 interface FotoSegmentWrapperProps {
   folderStructure: FolderStructure;

@@ -2,7 +2,6 @@
 
 import styles from "./SplashScreen.module.css";
 import Carousel from "../simpleUiComponents/Carousel";
-
 import CrossIcon from "../icons/CrossIcon";
 import TextElement from "../simpleUiComponents/TextElement";
 import useIsSmallScreen from "@/utils/useIsSmallScreen";

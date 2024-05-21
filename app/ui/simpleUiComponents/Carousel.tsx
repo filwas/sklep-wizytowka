@@ -7,9 +7,7 @@ import { CloudinaryResource } from "@/app/types/types";
 import { AdvancedImage, placeholder } from "@cloudinary/react";
 import { useCloudinary } from "@/app/providers";
 import { autoPad } from "@cloudinary/url-gen/actions/resize";
-import { generativeFill } from "@cloudinary/url-gen/qualifiers/background";
 import { autoGravity } from "@cloudinary/url-gen/qualifiers/gravity";
-
 import { format, quality } from "@cloudinary/url-gen/actions/delivery";
 import { auto } from "@cloudinary/url-gen/qualifiers/quality";
 import useIsSmallScreen from "@/utils/useIsSmallScreen";
@@ -25,12 +23,7 @@ const Carousel = (props: CarouselProps) => {
 
   const displayedImage = cld
     .image(props.fotos[carouselPosition].public_id)
-    .resize(
-      autoPad()
-        .width(1200)
-        .height(800)
-        .gravity(autoGravity())
-    )
+    .resize(autoPad().width(1200).height(800).gravity(autoGravity()))
     .delivery(quality(auto()))
     .delivery(format(auto()));
 

@@ -1,8 +1,7 @@
 import styles from "./DescriptionSegmentWrapper.module.css";
 
 import TextElement from "../simpleUiComponents/TextElement";
-import { list } from "@vercel/blob";
-import { CloudinaryResource, Folder } from "@/app/types/types";
+import { CloudinaryResource } from "@/app/types/types";
 
 interface DescriptionSegmentWrapperProps {
   descriptionTextFile: CloudinaryResource;
