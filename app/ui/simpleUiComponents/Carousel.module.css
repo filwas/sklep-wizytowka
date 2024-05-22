@@ -1,5 +1,6 @@
 .carouselWrapper{
     max-width: 100%;
+    min-width: 80%;
     max-height: inherit;
     height: inherit;
     width: inherit;

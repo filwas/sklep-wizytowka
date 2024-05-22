@@ -1,7 +1,6 @@
 .imageTileWrapper {
   position: relative;
   background-color: black;
-  z-index: 100;
 }
 
 .bigItemName {

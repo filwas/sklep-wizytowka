@@ -71,7 +71,7 @@ const ImageTile = (props: ImageTileProps) => {
         fotos={fotos}
         description={description}
         isVisible={isSplashOpen}
-        closeHandler={handleTileClick}
+        setIsVisible={setIsSplashOpen}
       />
     </>
   );
