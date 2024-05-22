@@ -3,27 +3,38 @@ import scrollToSegment from "@/app/helpers/scrollToSegment";
 import styles from "./MobileMenu.module.css";
 import classNames from "classnames";
 import CrossIcon from "../icons/CrossIcon";
+import { Dispatch, SetStateAction, useState } from "react";
 
 interface MobileMenuProps {
   isOpen: boolean;
-  closeHandler: () => void;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
   folders: string[];
 }
 const MobileMenu = (props: MobileMenuProps) => {
+  const [isClosing, setIsClosing] = useState(false);
   function handleClick(event: React.MouseEvent<HTMLAnchorElement>) {
-    props.closeHandler();
     scrollToSegment(event);
+    handleClose();
+  }
+
+  const handleClose = () => {
+    setIsClosing(true)
+    setTimeout(() => {
+      setIsClosing(false)
+      props.setIsOpen(false)
+    }, 750);
   }
 
   const mobileMenuWrapper = classNames(
     styles.mobileMenuWrapper,
-    props.isOpen ? styles.visible : ""
+    props.isOpen ? styles.visible : "",
+    isClosing ? styles.closing : ""
   );
 
   return (
     <div className={mobileMenuWrapper}>
       <div className={styles.innerWrapper}>
-        <a href="#" onClick={handleClick} style={{fontSize:"24px"}}>
+        <a href="#" onClick={handleClick} style={{ fontSize: "24px" }}>
           OGRODOWY CHILLOUT
         </a>
         <a href="#O nas" onClick={handleClick}>
@@ -41,7 +52,7 @@ const MobileMenu = (props: MobileMenuProps) => {
           KONTAKT
         </a>
       </div>
-      <button onClick={props.closeHandler}>
+      <button onClick={handleClose}>
         <CrossIcon />
       </button>
     </div>

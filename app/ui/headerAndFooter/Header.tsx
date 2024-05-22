@@ -16,9 +16,6 @@ const Header = (props: HeaderProps) => {
   const isSmallScreen = screenWidth <= 768;
   const [isSmallMenuOpen, setIsSmallMenuOpen] = useState(false);
 
-  function handleSmallMenuClick() {
-    setIsSmallMenuOpen((prev) => !prev);
-  }
 
   const headerWrapper = classNames(
     styles.headerWrapper,
@@ -43,7 +40,7 @@ const Header = (props: HeaderProps) => {
           OGRODOWY CHILLOUT
         </a>
         {isSmallScreen ? (
-          <div className={styles.mobileMenuIcon} onClick={handleSmallMenuClick}>
+          <div className={styles.mobileMenuIcon} onClick={()=>{setIsSmallMenuOpen(true)}}>
             <MobileMenuIcon />
           </div>
         ) : (
@@ -68,7 +65,7 @@ const Header = (props: HeaderProps) => {
       <MobileMenu
         isOpen={isSmallMenuOpen}
         folders={props.folders}
-        closeHandler={handleSmallMenuClick}
+        setIsOpen={setIsSmallMenuOpen}
       />
     </>
   );

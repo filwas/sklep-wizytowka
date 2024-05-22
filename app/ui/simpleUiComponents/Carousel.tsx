@@ -9,8 +9,9 @@ import { useCloudinary } from "@/app/providers";
 import { autoPad } from "@cloudinary/url-gen/actions/resize";
 import { autoGravity } from "@cloudinary/url-gen/qualifiers/gravity";
 import { format, quality } from "@cloudinary/url-gen/actions/delivery";
-import { auto } from "@cloudinary/url-gen/qualifiers/quality";
+import { auto as autoQuality } from "@cloudinary/url-gen/qualifiers/quality";
 import useIsSmallScreen from "@/utils/useIsSmallScreen";
+import { auto as autoFormat } from "@cloudinary/url-gen/qualifiers/format";
 
 interface CarouselProps {
   fotos: CloudinaryResource[];
@@ -24,8 +25,8 @@ const Carousel = (props: CarouselProps) => {
   const displayedImage = cld
     .image(props.fotos[carouselPosition].public_id)
     .resize(autoPad().width(1200).height(800).gravity(autoGravity()))
-    .delivery(quality(auto()))
-    .delivery(format(auto()));
+    .delivery(quality(autoQuality()))
+    .delivery(format(autoFormat()));
 
   const handleCarouselPosition = (side: string) => {
     const fotoArrayLength = props.fotos.length - 1;

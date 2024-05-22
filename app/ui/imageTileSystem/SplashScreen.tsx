@@ -7,21 +7,24 @@ import TextElement from "../simpleUiComponents/TextElement";
 import useIsSmallScreen from "@/utils/useIsSmallScreen";
 import { CloudinaryResource } from "@/app/types/types";
 import classNames from "classnames";
+import { Dispatch, SetStateAction, useState } from "react";
 
 interface SplashScreenProps {
   itemName: string;
   isVisible: boolean;
+  setIsVisible: Dispatch<SetStateAction<boolean>>;
   fotos: CloudinaryResource[];
   description: CloudinaryResource;
-  closeHandler?: () => void;
 }
 
 const SplashScreen = (props: SplashScreenProps) => {
+  const [isClosing, setIsClosing] = useState(false);
   const isSmallScreen = useIsSmallScreen(768);
 
   const splashScreenWrapper = classNames(
     styles.splashScreenWrapper,
-    props.isVisible ? styles.visible : ""
+    props.isVisible ? styles.visible : "",
+    isClosing ? styles.closing : ""
   );
 
   const carouselPlusTextWrapper = classNames(
@@ -39,6 +42,20 @@ const SplashScreen = (props: SplashScreenProps) => {
     isSmallScreen ? styles.textSmall : styles.textBig
   );
 
+  const closeHandler = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      props.setIsVisible(false);
+      setIsClosing(false);
+    }, 750);
+  };
+
+  props.fotos.sort((a, b) => {
+    const getNumbers = (str: String) =>
+      parseInt(str.replace(/\D/g, "") || "0", 10);
+    return getNumbers(a.public_id) - getNumbers(b.public_id);
+  });
+
   return (
     <div className={splashScreenWrapper}>
       <div className={styles.overflowWrapper}>
@@ -53,7 +70,7 @@ const SplashScreen = (props: SplashScreenProps) => {
           </div>
         </div>
       </div>
-      <button onClick={props.closeHandler}>
+      <button onClick={closeHandler}>
         <CrossIcon />
       </button>
     </div>
