@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import useIsSmallScreen from "@/utils/useIsSmallScreen";
 import styles from "./Footer.module.css";
@@ -8,6 +8,7 @@ import ShitterIcon from "../icons/ShitterIcon";
 import TwitterIcon from "../icons/TwitterIcon";
 import WhatsappIcon from "../icons/WhatsappIcon";
 import classNames from "classnames";
+import InstaIcon from "../icons/InstaIcon";
 
 interface FooterProps {}
 
@@ -21,13 +22,13 @@ const Footer = (props: FooterProps) => {
   return (
     <div className={footerWrapperStyle}>
       <div className={styles.iconsWrapper}>
-        <TwitterIcon />
-        <ShitterIcon />
-        <WhatsappIcon />
-        <FacebookIcon />
-        <MessengerIcon />
+        <a href="https://www.instagram.com/ogrodowy.chillout/" target="_blank">
+          <FacebookIcon />
+        </a>
+        <a href="https://www.instagram.com/ogrodowy.chillout/" target="_blank">
+          <InstaIcon />
+        </a>
       </div>
-      2024
     </div>
   );
 };
