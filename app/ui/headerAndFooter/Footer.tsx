@@ -3,10 +3,6 @@
 import useIsSmallScreen from "@/utils/useIsSmallScreen";
 import styles from "./Footer.module.css";
 import FacebookIcon from "../icons/FacebookIcon";
-import MessengerIcon from "../icons/MessengerIcon";
-import ShitterIcon from "../icons/ShitterIcon";
-import TwitterIcon from "../icons/TwitterIcon";
-import WhatsappIcon from "../icons/WhatsappIcon";
 import classNames from "classnames";
 import InstaIcon from "../icons/InstaIcon";
 

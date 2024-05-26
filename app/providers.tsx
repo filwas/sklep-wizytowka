@@ -10,7 +10,7 @@ export const useCloudinary = () => useContext(CloudinaryContext)!;
 function CloudinaryProvider({ children }: { children: React.ReactNode }) {
   const cld = new Cloudinary({
     cloud: {
-      cloudName: "dba79wuhh",
+      cloudName: process.env.CLOUD_NAME,
     },
   });
 
