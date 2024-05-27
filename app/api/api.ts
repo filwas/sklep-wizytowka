@@ -1,6 +1,6 @@
 import { CloudinaryResponse, FolderInfo } from "../types/types";
 
-const API_BASE_URL = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUD_NAME}`;
+const API_BASE_URL = `https://api.cloudinary.com/v1_1/${process.env.CLOUD_NAME}`;
 
 const REQUEST_OPTIONS = {
   method: "GET",
@@ -54,7 +54,7 @@ export async function listAllImages(prefix?: string) {
   }
 }
 
-export async function listAllAssets(prefix?: string) {
+export async function listAllAssets(prefix?: string) {  
   const prefixOption = prefix ? "&prefix=" + prefix : "";
 
   try {
@@ -72,7 +72,7 @@ export async function listAllAssets(prefix?: string) {
   }
 }
 
-export async function listTotalImages(amount: number) {
+export async function listTotalImages(amount: number) {  
   try {
     const response = await fetch(
       `${API_BASE_URL}/resources/image/upload?max_results=${amount}`,

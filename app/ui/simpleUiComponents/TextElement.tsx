@@ -24,7 +24,7 @@ const TextElement = (props: TextElementProps) => {
     };
 
     fetchData();
-  }, []);
+  }, [props.textSourceUrl]);
 
   const parseLinksToClickable = (text: string) => {
     const emailRegex = /([\w.-]+)@([\w.-]+\.[a-zA-Z]{2,4})/g;

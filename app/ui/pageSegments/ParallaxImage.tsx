@@ -3,7 +3,6 @@
 import { CloudinaryResource } from "@/app/types/types";
 import styles from "./ParallaxImage.module.css";
 import { ParallaxBanner, ParallaxBannerLayer } from "react-scroll-parallax";
-import { useCloudinary } from "@/app/providers";
 import { AdvancedImage } from "@cloudinary/react";
 import { crop } from "@cloudinary/url-gen/actions/resize";
 import { autoGravity } from "@cloudinary/url-gen/qualifiers/gravity";
@@ -11,13 +10,18 @@ import { format, quality } from "@cloudinary/url-gen/actions/delivery";
 import { auto as autoQuality } from "@cloudinary/url-gen/qualifiers/quality";
 import { auto as autoFormat } from "@cloudinary/url-gen/qualifiers/format";
 import useGetScreenWidth from "@/utils/useGetScreenWidth";
+import { Cloudinary } from "@cloudinary/url-gen/index";
 
 interface ParallaxImageProps {
   foto: CloudinaryResource;
 }
 
 export default function ParallaxImage(props: ParallaxImageProps) {
-  const cld = useCloudinary();
+  const cld = new Cloudinary({
+    cloud: {
+      cloudName: process.env.NEXT_PUBLIC_CLOUD_NAME,
+    },
+  });
 
   const image = cld
     .image(props.foto.public_id)
@@ -40,7 +44,7 @@ export default function ParallaxImage(props: ParallaxImageProps) {
           </div>
         </ParallaxBannerLayer>
         <ParallaxBannerLayer speed={-50}>
-          <AdvancedImage cldImg={image} style={{width: "100%"}} />
+          <AdvancedImage cldImg={image} style={{ width: "100%" }} />
         </ParallaxBannerLayer>
       </ParallaxBanner>
     </div>

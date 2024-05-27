@@ -1,5 +1,4 @@
 import FotoSegmentWrapper from "./ui/pageSegments/FotoSegmentWrapper";
-
 import Header from "./ui/headerAndFooter/Header";
 import DescriptionSegmentWrapper from "./ui/pageSegments/DescriptionSegmentWrapper";
 import ParallaxImage from "./ui/pageSegments/ParallaxImage";
