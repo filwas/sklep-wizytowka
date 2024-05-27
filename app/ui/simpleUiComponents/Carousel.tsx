@@ -5,13 +5,13 @@ import { useState } from "react";
 import ArrowIcon from "../icons/ArrowIcon";
 import { CloudinaryResource } from "@/app/types/types";
 import { AdvancedImage, placeholder } from "@cloudinary/react";
-import { useCloudinary } from "@/app/providers";
 import { autoPad } from "@cloudinary/url-gen/actions/resize";
 import { autoGravity } from "@cloudinary/url-gen/qualifiers/gravity";
 import { format, quality } from "@cloudinary/url-gen/actions/delivery";
 import { auto as autoQuality } from "@cloudinary/url-gen/qualifiers/quality";
 import useIsSmallScreen from "@/utils/useIsSmallScreen";
 import { auto as autoFormat } from "@cloudinary/url-gen/qualifiers/format";
+import { Cloudinary } from "@cloudinary/url-gen/index";
 
 interface CarouselProps {
   fotos: CloudinaryResource[];
@@ -20,7 +20,11 @@ interface CarouselProps {
 const Carousel = (props: CarouselProps) => {
   const [carouselPosition, setCarouselPosition] = useState(0);
   const isSmallScreen = useIsSmallScreen(768);
-  const cld = useCloudinary();
+  const cld = new Cloudinary({
+    cloud: {
+      cloudName: process.env.NEXT_PUBLIC_CLOUD_NAME,
+    },
+  });
 
   const displayedImage = cld
     .image(props.fotos[carouselPosition].public_id)

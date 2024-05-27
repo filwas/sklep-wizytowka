@@ -4,7 +4,6 @@ import styles from "./ImageTile.module.css";
 import { useEffect, useState } from "react";
 import SplashScreen from "./SplashScreen";
 import { CloudinaryResource } from "@/app/types/types";
-import { useCloudinary } from "@/app/providers";
 import { AdvancedImage, lazyload } from "@cloudinary/react";
 import useIsSmallScreen from "@/utils/useIsSmallScreen";
 import classNames from "classnames";
@@ -13,6 +12,7 @@ import { auto as autoQuality } from "@cloudinary/url-gen/qualifiers/quality";
 import { auto as autoFormat } from "@cloudinary/url-gen/qualifiers/format";
 import { autoGravity } from "@cloudinary/url-gen/qualifiers/gravity";
 import { format, quality } from "@cloudinary/url-gen/actions/delivery";
+import { Cloudinary } from "@cloudinary/url-gen/index";
 
 interface ImageTileProps {
   productResources: CloudinaryResource[];
@@ -49,7 +49,11 @@ const ImageTile = (props: ImageTileProps) => {
     return resource.resource_type == "raw";
   })[0];
 
-  const cld = useCloudinary();
+  const cld = new Cloudinary({
+    cloud: {
+      cloudName: process.env.NEXT_PUBLIC_CLOUD_NAME,
+    },
+  });
 
   const thumbObject =
     fotos.find((object) => object.public_id.includes("thumbnail")) || fotos[0];
