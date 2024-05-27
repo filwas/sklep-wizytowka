@@ -12,7 +12,7 @@ export default async function Home() {
   const totalAssets = await listTotalAssets(500);
 
   const combinedAssets = [...totalImages.resources, ...totalAssets.resources];
-  // 
+  
 
   const folderStructure = useGetFolderStructure(combinedAssets);
   const fotoTilesFolderStructure = folderStructure[
