@@ -18,6 +18,7 @@ interface ParallaxImageProps {
 
 export default function ParallaxImage(props: ParallaxImageProps) {
   const cld = useCloudinary();
+
   const image = cld
     .image(props.foto.public_id)
     .resize(
@@ -39,7 +40,7 @@ export default function ParallaxImage(props: ParallaxImageProps) {
           </div>
         </ParallaxBannerLayer>
         <ParallaxBannerLayer speed={-50}>
-          <AdvancedImage cldImg={image} style={{ width: "100%" }} />
+          <AdvancedImage cldImg={image} style={{width: "100%"}} />
         </ParallaxBannerLayer>
       </ParallaxBanner>
     </div>

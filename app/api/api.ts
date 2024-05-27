@@ -1,6 +1,6 @@
 import { CloudinaryResponse, FolderInfo } from "../types/types";
 
-const API_BASE_URL = `https://api.cloudinary.com/v1_1/${process.env.CLOUD_NAME}`;
+const API_BASE_URL = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUD_NAME}`;
 
 const REQUEST_OPTIONS = {
   method: "GET",
